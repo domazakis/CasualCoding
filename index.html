@@ -175,7 +175,7 @@ soundBtn.addEventListener('click', e=>{
 /* ========================= Ρυθμίσεις ========================= */
 const CFG = {
   anchor: 0.26,      // πού «κάθεται» η δεξιά άκρη του κτηρίου στην οθόνη
-  growSpeed: 0.60,   // * W ανά δευτερόλεπτο
+  growSpeed: 0.42,   // * W ανά δευτερόλεπτο
   maxStick: 0.72,    // * W
   rotSpeed: 340,     // μοίρες/δευτ.
   walkSpeed: 0.40,   // * W ανά δευτερόλεπτο
@@ -238,9 +238,10 @@ window.addEventListener('orientationchange', ()=>setTimeout(resize,200));
 /* ========================= Δημιουργία πίστας ========================= */
 function makePlatform(prev){
   const d = Math.min(score, 22)/22;
-  const w = rand(W*(0.20-0.09*d), W*(0.27-0.10*d));
-  const maxGap = Math.min(W*(0.20+0.30*d), W*0.62 - w);
-  const gap = rand(W*(0.13+0.05*d), Math.max(W*0.16, maxGap));
+  const w = rand(W*(0.13-0.05*d), W*(0.20-0.08*d));
+  const gapMin = W*(0.11+0.03*d);
+  const gapMax = Math.min(W*(0.28+0.26*d), W*0.62 - w);
+  const gap = rand(gapMin, Math.max(gapMin+W*0.04, gapMax));
   return {x: prev.x + prev.w + gap, w: w, seed: Math.random()*1000};
 }
 function resetGame(){
