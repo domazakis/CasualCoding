@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2a1650">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Πριγκίπισσα Κόρυ &amp; το Μαγικό Χαλί - ένα απλό παιχνίδι με κοντάρι για κινητό.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Πριγκίπισσα Κόρυ &amp; το Μαγικό Χαλί</title>
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#160a2e;
+    font-family:"Trebuchet MS","Segoe UI",Tahoma,Verdana,sans-serif;
+    -webkit-user-select:none;user-select:none;touch-action:none;overscroll-behavior:none}
+  #game{display:block;position:fixed;inset:0}
+  .overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:14px;text-align:center;padding:24px;
+    background:radial-gradient(circle at 50% 40%,rgba(60,25,110,.82),rgba(12,5,30,.94));
+    color:#fff;z-index:5;animation:fade .35s ease}
+  .overlay.hidden{display:none}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  h1{margin:0;font-size:clamp(22px,7vw,42px);line-height:1.15;
+    background:linear-gradient(180deg,#fff6c9,#ffc65c 60%,#ff8a3d);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 3px 0 rgba(0,0,0,.25);letter-spacing:.5px}
+  h2{margin:0;font-size:clamp(20px,6vw,34px);color:#ffd98a}
+  p{margin:0;font-size:clamp(14px,4.2vw,19px);color:#e7dcff;max-width:22em;line-height:1.5}
+  .btn{margin-top:6px;border:0;cursor:pointer;font:inherit;font-weight:bold;
+    font-size:clamp(17px,5vw,22px);color:#4a2000;padding:14px 34px;border-radius:999px;
+    background:linear-gradient(180deg,#ffe08a,#ffab35);
+    box-shadow:0 6px 0 #c26a12,0 12px 22px rgba(0,0,0,.4);transition:transform .08s,box-shadow .08s}
+  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 #c26a12,0 6px 12px rgba(0,0,0,.4)}
+  .scores{display:flex;gap:26px;justify-content:center;margin:4px 0}
+  .scores div{font-size:clamp(13px,3.6vw,15px);color:#c9b8f0;letter-spacing:1px}
+  .scores b{display:block;font-size:clamp(30px,9vw,46px);color:#fff}
+  #sound{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:10px;z-index:6;
+    width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;font-size:20px;
+    background:rgba(20,8,44,.45);color:#fff;backdrop-filter:blur(3px)}
+  #tip{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);left:0;right:0;
+    text-align:center;color:rgba(255,255,255,.85);font-size:15px;z-index:4;pointer-events:none;
+    text-shadow:0 2px 6px rgba(0,0,0,.6);animation:pulse 1.8s ease-in-out infinite}
+  #tip.hidden{display:none}
+  @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+  .sparkle{font-size:clamp(26px,8vw,40px)}
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<button id="sound" aria-label="Ήχος">🔊</button>
+<div id="tip" class="hidden">Κράτα πατημένο για να μεγαλώσει το κοντάρι ✨</div>
+
+<div id="startScreen" class="overlay">
+  <div class="sparkle">🧞‍♂️ 🪄 🐒</div>
+  <h1>Πριγκίπισσα Κόρυ<br>&amp; το Μαγικό Χαλί</h1>
+  <p>Κράτα πατημένο το δάχτυλό σου για να μεγαλώσει το μαγικό κοντάρι.<br>
+     Άσε το να πέσει και πέρασε στο επόμενο παλάτι!</p>
+  <button class="btn" id="playBtn">Ξεκίνα!</button>
+</div>
+
+<div id="overScreen" class="overlay hidden">
+  <h2 id="overTitle">Ωχ, τι κρίμα!</h2>
+  <div class="scores">
+    <div>ΣΚΟΡ<b id="finalScore">0</b></div>
+    <div>ΡΕΚΟΡ<b id="bestScore">0</b></div>
+  </div>
+  <p id="overMsg">Η Κόρυ θέλει να ξαναπροσπαθήσει!</p>
+  <button class="btn" id="againBtn">Ξανά!</button>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ========================= Βασικά ========================= */
+const cvs = document.getElementById('game');
+const ctx = cvs.getContext('2d');
+let W = 0, H = 0, DPR = 1, GROUND = 0, U = 40;
+
+const startScreen = document.getElementById('startScreen');
+const overScreen  = document.getElementById('overScreen');
+const tipEl       = document.getElementById('tip');
+const soundBtn    = document.getElementById('sound');
+
+const clamp = (v,a,b)=>v<a?a:(v>b?b:v);
+const lerp  = (a,b,t)=>a+(b-a)*t;
+const rand  = (a,b)=>a+Math.random()*(b-a);
+function hash(n){ const s = Math.sin(n*127.1+3.7)*43758.5453; return s-Math.floor(s); }
+
+/* ========================= Ήχος ========================= */
+const Sound = {
+  on: localStorage.getItem('cory_sound') !== '0',
+  ctx: null,
+  voice: null,
+  init(){
+    if(!this.ctx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(AC) this.ctx = new AC();
+    }
+    if(this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+    this.pickVoice();
+  },
+  pickVoice(){
+    if(!('speechSynthesis' in window)) return;
+    const vs = speechSynthesis.getVoices();
+    if(!vs || !vs.length) return;
+    this.voice = vs.find(v=>/^el/i.test(v.lang)) || null;
+  },
+  tone(freq, dur, type, vol, slideTo){
+    if(!this.on || !this.ctx) return;
+    const t = this.ctx.currentTime;
+    const o = this.ctx.createOscillator(), g = this.ctx.createGain();
+    o.type = type || 'sine';
+    o.frequency.setValueAtTime(freq, t);
+    if(slideTo) o.frequency.exponentialRampToValueAtTime(Math.max(40,slideTo), t+dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol||0.18, t+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+dur);
+    o.connect(g); g.connect(this.ctx.destination);
+    o.start(t); o.stop(t+dur+0.05);
+  },
+  grow: null,
+  startGrow(){
+    if(!this.on || !this.ctx || this.grow) return;
+    const t = this.ctx.currentTime;
+    const o = this.ctx.createOscillator(), g = this.ctx.createGain();
+    o.type = 'triangle';
+    o.frequency.setValueAtTime(180, t);
+    o.frequency.linearRampToValueAtTime(900, t+2.2);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.06, t+0.06);
+    o.connect(g); g.connect(this.ctx.destination); o.start(t);
+    this.grow = {o,g};
+  },
+  stopGrow(){
+    if(!this.grow) return;
+    const {o,g} = this.grow, t = this.ctx.currentTime;
+    g.gain.cancelScheduledValues(t);
+    g.gain.setValueAtTime(g.gain.value, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+0.12);
+    o.stop(t+0.2);
+    this.grow = null;
+  },
+  whoosh(){ this.tone(520, .28, 'sawtooth', .07, 130); },
+  step(){  this.tone(300, .05, 'square', .03); },
+  good(){  this.tone(660,.12,'sine',.16); setTimeout(()=>this.tone(880,.18,'sine',.16),100); },
+  perfect(){ [784,988,1175,1568].forEach((f,i)=>setTimeout(()=>this.tone(f,.18,'sine',.15),i*80)); },
+  fail(){  this.tone(330,.7,'sawtooth',.14,70); },
+  say(text){
+    if(!this.on || !('speechSynthesis' in window)) return;
+    try{
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'el-GR';
+      if(this.voice) u.voice = this.voice;
+      u.rate = 0.95; u.pitch = 1.25;
+      speechSynthesis.speak(u);
+    }catch(e){}
+  }
+};
+if('speechSynthesis' in window) speechSynthesis.onvoiceschanged = ()=>Sound.pickVoice();
+soundBtn.textContent = Sound.on ? '🔊' : '🔇';
+soundBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  Sound.on = !Sound.on;
+  localStorage.setItem('cory_sound', Sound.on ? '1' : '0');
+  soundBtn.textContent = Sound.on ? '🔊' : '🔇';
+  if(!Sound.on && 'speechSynthesis' in window) speechSynthesis.cancel();
+  if(Sound.on){ Sound.init(); Sound.good(); }
+});
+
+/* ========================= Ρυθμίσεις ========================= */
+const CFG = {
+  anchor: 0.26,      // πού «κάθεται» η δεξιά άκρη του κτηρίου στην οθόνη
+  growSpeed: 0.60,   // * W ανά δευτερόλεπτο
+  maxStick: 0.72,    // * W
+  rotSpeed: 340,     // μοίρες/δευτ.
+  walkSpeed: 0.40,   // * W ανά δευτερόλεπτο
+  gravity: 2.2       // * H ανά δευτ^2
+};
+
+/* ========================= Κατάσταση παιχνιδιού ========================= */
+let state = 'menu';   // menu | ready | grow | rotate | walk | scroll | fall | over
+let platforms = [], curIdx = 0;
+let stick = {len:0, angle:0, baseX:0};
+let hero  = {x:0, y:0, vy:0, rot:0, walk:0};
+let scrollX = 0, scrollFrom = 0, scrollTo = 0, scrollT = 0;
+let score = 0, best = +(localStorage.getItem('cory_best')||0), combo = 0, wins = 0;
+let landing = null, sparkles = [], cameo = null, carpetBg = null;
+let time = 0, shake = 0;
+
+const PHRASES = {
+  genie:  ['Γεια σου Κόρυ!', 'Μπράβο!', 'Τέλεια!'],
+  boy:    ['Συγχαρητήρια!', 'Μπράβο Κόρυ!', 'Συνέχισε έτσι!'],
+  monkey: ['Συγχαρητήρια!', 'Ζήτω!', 'Μπράβο!']
+};
+const CAMEOS = ['genie','boy','monkey'];
+
+/* ========================= Διαστάσεις ========================= */
+let stars = [];
+let moonImg = null, moonR = 0;
+function buildMoon(){
+  moonR = Math.min(W,H)*0.06;
+  const size = Math.ceil(moonR*6);
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  const m = c.getContext('2d');
+  const cx = size/2, cy = size/2;
+  m.shadowColor = 'rgba(255,240,190,.8)'; m.shadowBlur = moonR*1.1;
+  m.fillStyle = '#fff3cf';
+  m.beginPath(); m.arc(cx, cy, moonR, 0, 6.283); m.fill();
+  m.shadowBlur = 0;
+  m.globalCompositeOperation = 'destination-out';
+  m.beginPath(); m.arc(cx-moonR*0.44, cy-moonR*0.22, moonR*0.90, 0, 6.283); m.fill();
+  moonImg = c;
+}
+function resize(){
+  DPR = Math.min(window.devicePixelRatio || 1, 2.5);
+  W = window.innerWidth; H = window.innerHeight;
+  cvs.width = Math.round(W*DPR); cvs.height = Math.round(H*DPR);
+  cvs.style.width = W+'px'; cvs.style.height = H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  GROUND = Math.round(H*0.74);
+  U = clamp(Math.min(W*0.10, H*0.11), 26, 78);   // ύψος ηρωίδας
+  buildMoon();
+  stars = [];
+  for(let i=0;i<70;i++){
+    stars.push({x:hash(i)*W, y:hash(i+99)*GROUND*0.72, r:hash(i+7)*1.4+0.4, p:hash(i+31)*6.28});
+  }
+  if(state !== 'menu'){ scrollX = scrollTo = platforms[curIdx].x + platforms[curIdx].w - W*CFG.anchor; }
+}
+window.addEventListener('resize', resize);
+window.addEventListener('orientationchange', ()=>setTimeout(resize,200));
+
+/* ========================= Δημιουργία πίστας ========================= */
+function makePlatform(prev){
+  const d = Math.min(score, 22)/22;
+  const w = rand(W*(0.20-0.09*d), W*(0.27-0.10*d));
+  const maxGap = Math.min(W*(0.20+0.30*d), W*0.62 - w);
+  const gap = rand(W*(0.13+0.05*d), Math.max(W*0.16, maxGap));
+  return {x: prev.x + prev.w + gap, w: w, seed: Math.random()*1000};
+}
+function resetGame(){
+  score = 0; combo = 0; wins = 0; sparkles = []; cameo = null; shake = 0;
+  platforms = [{x: 0, w: W*0.30, seed: 12}];
+  for(let i=0;i<4;i++) platforms.push(makePlatform(platforms[platforms.length-1]));
+  curIdx = 0;
+  scrollX = scrollTo = platforms[0].x + platforms[0].w - W*CFG.anchor;
+  hero.x = platforms[0].x + platforms[0].w - U*0.42;
+  hero.y = GROUND; hero.vy = 0; hero.rot = 0; hero.walk = 0;
+  stick.len = 0; stick.angle = 0; stick.baseX = platforms[0].x + platforms[0].w;
+  landing = null;
+  state = 'ready';
+  tipEl.classList.remove('hidden');
+}
+function perfectWidth(p){ return clamp(p.w*0.14, U*0.28, U*0.55); }
+
+/* ========================= Χειρισμός ========================= */
+function press(){
+  if(state !== 'ready') return;
+  Sound.init();
+  state = 'grow';
+  stick.baseX = platforms[curIdx].x + platforms[curIdx].w;
+  stick.len = U*0.10;
+  Sound.startGrow();
+  tipEl.classList.add('hidden');
+}
+function release(){
+  if(state !== 'grow') return;
+  Sound.stopGrow();
+  Sound.whoosh();
+  state = 'rotate';
+}
+function onDown(e){ if(state==='grow'||state==='ready'){ e.preventDefault(); } press(); }
+function onUp(e){ if(state==='rotate'||state==='grow'){ e.preventDefault(); } release(); }
+cvs.addEventListener('pointerdown', onDown);
+window.addEventListener('pointerup', onUp);
+window.addEventListener('pointercancel', onUp);
+window.addEventListener('keydown', e=>{ if(e.code==='Space' && !e.repeat) press(); });
+window.addEventListener('keyup',   e=>{ if(e.code==='Space') release(); });
+window.addEventListener('contextmenu', e=>e.preventDefault());
+
+document.getElementById('playBtn').addEventListener('click', ()=>{
+  Sound.init(); startScreen.classList.add('hidden'); resetGame();
+});
+document.getElementById('againBtn').addEventListener('click', ()=>{
+  Sound.init(); overScreen.classList.add('hidden'); resetGame();
+});
+
+/* ========================= Λογική ========================= */
+function evaluate(){
+  const cur = platforms[curIdx], next = platforms[curIdx+1];
+  const tip = cur.x + cur.w + stick.len;
+  const ok = tip >= next.x && tip <= next.x + next.w;
+  const center = next.x + next.w/2;
+  const perfect = ok && Math.abs(tip-center) <= perfectWidth(next)/2;
+  landing = {tip, ok, perfect};
+  hero.targetX = ok ? (next.x + next.w - U*0.42) : tip;
+  state = 'walk';
+}
+function succeed(){
+  const next = platforms[curIdx+1];
+  score += landing.perfect ? 2 : 1;
+  wins++;
+  if(landing.perfect){
+    combo++;
+    Sound.perfect();
+    burst(next.x + next.w/2, GROUND, 26);
+    shake = 6;
+  } else { combo = 0; Sound.good(); }
+  curIdx++;
+  platforms.push(makePlatform(platforms[platforms.length-1]));
+  if(platforms.length > 8){ platforms.shift(); curIdx--; }
+  scrollFrom = scrollX;
+  scrollTo = platforms[curIdx].x + platforms[curIdx].w - W*CFG.anchor;
+  scrollT = 0;
+  state = 'scroll';
+  if(wins % 3 === 0) spawnCameo();
+}
+function die(){
+  state = 'fall';
+  hero.vy = 0;
+  Sound.fail();
+  setTimeout(()=>Sound.say('Ωχ, τι κρίμα!'), 260);
+}
+function gameOver(){
+  state = 'over';
+  if(score > best){ best = score; localStorage.setItem('cory_best', best); }
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('bestScore').textContent = best;
+  document.getElementById('overTitle').textContent = score>0 ? 'Ωχ, τι κρίμα!' : 'Ωχ!';
+  document.getElementById('overMsg').textContent =
+    score >= best && score>0 ? 'Νέο ρεκόρ! Η Κόρυ είναι περήφανη!' : 'Η Κόρυ θέλει να ξαναπροσπαθήσει!';
+  overScreen.classList.remove('hidden');
+}
+function burst(x,y,n){
+  for(let i=0;i<n;i++){
+    sparkles.push({x, y, vx:rand(-1,1)*W*0.12, vy:rand(-1.4,-0.2)*H*0.14,
+      life:1, r:rand(2,5), hue:rand(38,58)});
+  }
+}
+function spawnCameo(){
+  const type = CAMEOS[Math.floor(Math.random()*CAMEOS.length)];
+  const arr = PHRASES[type];
+  const phrase = arr[Math.floor(Math.random()*arr.length)];
+  cameo = {type, phrase, t:0, dur:4.2, y: GROUND - H*rand(0.30,0.42)};
+  setTimeout(()=>Sound.say(phrase), 500);
+}
+
+function update(dt){
+  time += dt;
+  if(shake>0) shake = Math.max(0, shake - dt*22);
+
+  // διακοσμητικό χαλί στο βάθος
+  if(!carpetBg && Math.random() < dt*0.09) carpetBg = {t:0, dur:9, y:GROUND-H*rand(.42,.58)};
+  if(carpetBg){ carpetBg.t += dt; if(carpetBg.t > carpetBg.dur) carpetBg = null; }
+
+  for(let i=sparkles.length-1;i>=0;i--){
+    const s = sparkles[i];
+    s.x += s.vx*dt; s.y += s.vy*dt; s.vy += H*0.5*dt; s.life -= dt*0.9;
+    if(s.life<=0) sparkles.splice(i,1);
+  }
+  if(cameo){ cameo.t += dt; if(cameo.t > cameo.dur) cameo = null; }
+
+  if(state === 'grow'){
+    stick.len = Math.min(stick.len + W*CFG.growSpeed*dt, W*CFG.maxStick);
+  }
+  else if(state === 'rotate'){
+    stick.angle += CFG.rotSpeed*dt;
+    if(stick.angle >= 90){ stick.angle = 90; evaluate(); }
+  }
+  else if(state === 'walk'){
+    hero.walk += dt*10;
+    const sp = W*CFG.walkSpeed*dt;
+    if(hero.x < hero.targetX){
+      hero.x = Math.min(hero.x + sp, hero.targetX);
+      if(Math.floor(hero.walk)%3===0 && Math.random()<0.15) Sound.step();
+    } else {
+      hero.walk = 0;
+      if(landing.ok) succeed(); else die();
+    }
+  }
+  else if(state === 'scroll'){
+    scrollT = Math.min(1, scrollT + dt*2.4);
+    const e = 1-Math.pow(1-scrollT,3);
+    scrollX = lerp(scrollFrom, scrollTo, e);
+    if(scrollT >= 1){ stick.len = 0; stick.angle = 0; landing = null; state = 'ready'; }
+  }
+  else if(state === 'fall'){
+    hero.vy += H*CFG.gravity*dt;
+    hero.y += hero.vy*dt;
+    hero.rot = Math.min(hero.rot + dt*3.2, 1.6);
+    if(stick.angle < 180) stick.angle = Math.min(180, stick.angle + CFG.rotSpeed*0.9*dt);
+    if(hero.y > H + U*3) gameOver();
+  }
+}
+
+/* ========================= Ζωγραφική ========================= */
+function drawSky(){
+  const g = ctx.createLinearGradient(0,0,0,GROUND+H*0.1);
+  g.addColorStop(0,   '#160b33');
+  g.addColorStop(0.32,'#4b2a72');
+  g.addColorStop(0.60,'#9c4a72');
+  g.addColorStop(0.80,'#e8794a');
+  g.addColorStop(1,   '#ffca7a');
+  ctx.fillStyle = g; ctx.fillRect(0,0,W,GROUND+H*0.1);
+
+  // αστέρια
+  for(const s of stars){
+    const tw = 0.45 + 0.55*Math.abs(Math.sin(time*1.4 + s.p));
+    ctx.globalAlpha = tw * clamp(1 - s.y/(GROUND*0.8), 0.1, 1);
+    ctx.fillStyle = '#fff8e0';
+    ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  // φεγγάρι
+  if(moonImg) ctx.drawImage(moonImg, W*0.80-moonR*3, GROUND*0.20-moonR*3, moonR*6, moonR*6);
+}
+
+function dome(x, y, r){          // τρούλος με μύτη
+  ctx.beginPath();
+  ctx.moveTo(x-r, y);
+  ctx.quadraticCurveTo(x-r, y-r*1.15, x, y-r*1.45);
+  ctx.quadraticCurveTo(x+r, y-r*1.15, x+r, y);
+  ctx.closePath(); ctx.fill();
+}
+
+function drawSkyline(off, baseY, color, period, sc, alpha){
+  ctx.save(); ctx.globalAlpha = alpha; ctx.fillStyle = color;
+  const i0 = Math.floor(off/period)-1, i1 = Math.ceil((off+W)/period)+1;
+  for(let i=i0;i<=i1;i++){
+    const x = i*period - off;
+    const h1 = (0.35 + hash(i)*0.6) * period * sc;
+    const w1 = period*(0.34 + hash(i+5)*0.30);
+    ctx.fillRect(x, baseY-h1, w1, h1);
+    dome(x + w1/2, baseY-h1, w1*0.5);
+    // μιναρές
+    if(hash(i+11) > 0.55){
+      const mw = period*0.075, mh = h1*(1.25+hash(i+3)*0.6), mx = x + w1 + period*0.16;
+      ctx.fillRect(mx, baseY-mh, mw, mh);
+      dome(mx+mw/2, baseY-mh, mw*0.85);
+    }
+    // φοίνικας
+    if(hash(i+23) > 0.72){
+      const px = x + w1 + period*0.42, ph = h1*0.85;
+      ctx.fillRect(px, baseY-ph, period*0.035, ph);
+      for(let k=0;k<5;k++){
+        const a = -Math.PI/2 + (k-2)*0.55;
+        ctx.beginPath();
+        ctx.moveTo(px+period*0.017, baseY-ph);
+        ctx.quadraticCurveTo(px+Math.cos(a)*period*0.16, baseY-ph+Math.sin(a)*period*0.16,
+                             px+Math.cos(a)*period*0.26, baseY-ph+Math.sin(a)*period*0.10);
+        ctx.quadraticCurveTo(px+Math.cos(a)*period*0.15, baseY-ph+Math.sin(a)*period*0.09,
+                             px+period*0.017, baseY-ph);
+        ctx.fill();
+      }
+    }
+  }
+  ctx.restore();
+}
+
+function drawBackground(){
+  drawSky();
+  drawSkyline(scrollX*0.10, GROUND*0.94, '#2e1a4f', Math.max(90,W*0.34), 0.55, 0.85);
+  drawSkyline(scrollX*0.24, GROUND*1.00, '#4a2a63', Math.max(70,W*0.26), 0.48, 0.9);
+  // αμμόλοφοι
+  ctx.fillStyle = '#6b3c66';
+  const off = scrollX*0.40, per = Math.max(120,W*0.5);
+  ctx.beginPath(); ctx.moveTo(0, GROUND+H*0.02);
+  for(let x=0;x<=W;x+=12){
+    const t = (x+off)/per;
+    ctx.lineTo(x, GROUND - H*0.012 - Math.sin(t*2.1)*H*0.02 - Math.sin(t*0.7+1.3)*H*0.016);
+  }
+  ctx.lineTo(W, H); ctx.lineTo(0,H); ctx.closePath(); ctx.fill();
+}
+
+function drawCarpetBg(){
+  if(!carpetBg) return;
+  const p = carpetBg.t/carpetBg.dur;
+  const x = W + W*0.15 - p*(W*1.45);
+  const y = carpetBg.y + Math.sin(carpetBg.t*1.6)*H*0.02;
+  const u = Math.min(W,H)*0.055;
+  ctx.save();
+  ctx.globalAlpha = 0.45;
+  ctx.translate(x,y); ctx.rotate(-0.08);
+  const th = u*0.20, wav = u*0.07;
+  const topY = t => Math.sin(t*2.2+0.4)*wav;
+  ctx.beginPath();
+  for(let i=0;i<=18;i++){ const t=-1+2*i/18; i?ctx.lineTo(t*u,topY(t)):ctx.moveTo(t*u,topY(t)); }
+  for(let i=18;i>=0;i--){ const t=-1+2*i/18; ctx.lineTo(t*u,topY(t)+th); }
+  ctx.closePath();
+  ctx.fillStyle = '#b03a78'; ctx.fill();
+  ctx.strokeStyle = '#ffd166'; ctx.lineWidth = Math.max(1,u*0.035);
+  for(let i=-2;i<=2;i++){
+    ctx.beginPath(); ctx.moveTo(-u, topY(-1)+th*(0.5+i*0.18));
+    ctx.lineTo(-u-u*0.13, topY(-1)+th*(0.5+i*0.26)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(u, topY(1)+th*(0.5+i*0.18));
+    ctx.lineTo(u+u*0.13, topY(1)+th*(0.5+i*0.26)); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawPlatform(p, isNext){
+  const g = ctx.createLinearGradient(0, GROUND, 0, H);
+  g.addColorStop(0,'#f0d3a0'); g.addColorStop(0.18,'#dcb277'); g.addColorStop(1,'#8a5a3f');
+  ctx.fillStyle = g;
+  ctx.fillRect(p.x, GROUND, p.w, H-GROUND);
+  // στέψη
+  ctx.fillStyle = '#fff0cf';
+  ctx.fillRect(p.x, GROUND, p.w, Math.max(2,U*0.07));
+  ctx.fillStyle = 'rgba(90,50,30,.25)';
+  ctx.fillRect(p.x, GROUND+U*0.09, p.w, Math.max(1,U*0.03));
+  // επάλξεις
+  ctx.fillStyle = '#f0d3a0';
+  const cw = Math.max(6,U*0.24);
+  for(let x=p.x+cw*0.3; x+cw*0.6 < p.x+p.w; x+=cw*1.5){
+    ctx.fillRect(x, GROUND-U*0.16, cw*0.6, U*0.16);
+  }
+  // παράθυρα-καμάρες
+  const cols = Math.max(1, Math.floor(p.w/(U*0.85)));
+  const gapx = p.w/cols;
+  for(let c=0;c<cols;c++){
+    for(let r=0;r<3;r++){
+      const wx = p.x + gapx*(c+0.5), wy = GROUND + U*0.55 + r*U*0.85;
+      if(wy > H) break;
+      const ww = Math.min(gapx*0.34, U*0.26), wh = U*0.34;
+      const lit = hash(p.seed + c*7 + r*13) > 0.45;
+      ctx.fillStyle = lit ? 'rgba(255,206,120,.92)' : 'rgba(60,32,26,.55)';
+      ctx.beginPath();
+      ctx.moveTo(wx-ww/2, wy+wh);
+      ctx.lineTo(wx-ww/2, wy);
+      ctx.quadraticCurveTo(wx, wy-ww*0.9, wx+ww/2, wy);
+      ctx.lineTo(wx+ww/2, wy+wh);
+      ctx.closePath(); ctx.fill();
+    }
+  }
+  // σημάδι «τέλειας» προσγείωσης
+  if(isNext){
+    const pw = perfectWidth(p), cx = p.x + p.w/2;
+    const glow = 0.55 + 0.45*Math.sin(time*4);
+    ctx.save();
+    ctx.shadowColor = 'rgba(255,90,120,.9)'; ctx.shadowBlur = 12*glow;
+    ctx.fillStyle = '#ff4d6d';
+    ctx.fillRect(cx-pw/2, GROUND, pw, Math.max(3,U*0.09));
+    ctx.restore();
+    // διαμαντάκι
+    ctx.save();
+    ctx.translate(cx, GROUND - U*0.30 - Math.sin(time*3)*U*0.06);
+    ctx.rotate(Math.PI/4);
+    ctx.fillStyle = '#8be9fd';
+    ctx.fillRect(-U*0.10,-U*0.10,U*0.20,U*0.20);
+    ctx.restore();
+  }
+}
+
+function drawStick(){
+  if(stick.len <= 0) return;
+  ctx.save();
+  ctx.translate(stick.baseX, GROUND);
+  ctx.rotate(stick.angle*Math.PI/180);
+  const tw = Math.max(3, U*0.10);
+  const g = ctx.createLinearGradient(0,0,0,-stick.len);
+  g.addColorStop(0,'#8a5a2b'); g.addColorStop(0.5,'#c08a4a'); g.addColorStop(1,'#7a4a22');
+  ctx.fillStyle = g;
+  ctx.fillRect(-tw/2, -stick.len, tw, stick.len);
+  // χρυσές άκρες
+  ctx.fillStyle = '#ffd977';
+  ctx.fillRect(-tw*0.75, -stick.len, tw*1.5, tw*0.9);
+  ctx.fillRect(-tw*0.75, -tw*0.9, tw*1.5, tw*0.9);
+  // λάμψη στη μύτη
+  ctx.save();
+  ctx.globalAlpha = 0.55 + 0.45*Math.sin(time*8);
+  ctx.shadowColor = '#ffe9a8'; ctx.shadowBlur = 14;
+  ctx.fillStyle = '#fff3c4';
+  ctx.beginPath(); ctx.arc(0, -stick.len, tw*0.7, 0, 6.283); ctx.fill();
+  ctx.restore();
+  ctx.restore();
+}
+
+function drawPrincess(x, yFeet, u, phase, rot){
+  ctx.save();
+  ctx.translate(x, yFeet);
+  if(rot) ctx.rotate(rot);
+  const swing = Math.sin(phase)*0.5;
+
+  // σκιά
+  if(!rot){
+    ctx.globalAlpha = 0.22; ctx.fillStyle = '#000';
+    ctx.beginPath(); ctx.ellipse(0,0,u*0.30,u*0.07,0,0,6.283); ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+  // πόδια
+  ctx.strokeStyle = '#f2cfae'; ctx.lineWidth = u*0.075; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(-u*0.05, -u*0.16); ctx.lineTo(-u*0.05 + swing*u*0.16, 0);
+  ctx.moveTo( u*0.05, -u*0.16); ctx.lineTo( u*0.05 - swing*u*0.16, 0);
+  ctx.stroke();
+  // παπούτσια
+  ctx.fillStyle = '#ffd166';
+  ctx.beginPath(); ctx.ellipse(-u*0.05+swing*u*0.16, 0, u*0.075,u*0.045,0,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.ellipse( u*0.05-swing*u*0.16, 0, u*0.075,u*0.045,0,0,6.283); ctx.fill();
+
+  // μαλλιά πίσω
+  ctx.fillStyle = '#2b1a2e';
+  ctx.beginPath();
+  ctx.ellipse(0, -u*0.62, u*0.25, u*0.34, 0, 0, 6.283); ctx.fill();
+
+  // φόρεμα
+  const g = ctx.createLinearGradient(0,-u*0.66,0,-u*0.10);
+  g.addColorStop(0,'#7ee0d0'); g.addColorStop(1,'#3aa6c9');
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.moveTo(-u*0.16, -u*0.62);
+  ctx.lineTo( u*0.16, -u*0.62);
+  ctx.quadraticCurveTo(u*0.30,-u*0.30, u*0.26,-u*0.12);
+  ctx.quadraticCurveTo(0,-u*0.03,-u*0.26,-u*0.12);
+  ctx.quadraticCurveTo(-u*0.30,-u*0.30,-u*0.16,-u*0.62);
+  ctx.closePath(); ctx.fill();
+  // ζώνη
+  ctx.fillStyle = '#ffd166';
+  ctx.fillRect(-u*0.17,-u*0.44,u*0.34,u*0.06);
+
+  // χέρια
+  ctx.strokeStyle = '#f2cfae'; ctx.lineWidth = u*0.065;
+  ctx.beginPath();
+  ctx.moveTo(-u*0.15,-u*0.56); ctx.lineTo(-u*0.26,-u*0.34 - swing*u*0.08);
+  ctx.moveTo( u*0.15,-u*0.56); ctx.lineTo( u*0.26,-u*0.34 + swing*u*0.08);
+  ctx.stroke();
+
+  // κεφάλι
+  ctx.fillStyle = '#f7d8b8';
+  ctx.beginPath(); ctx.arc(0,-u*0.76,u*0.165,0,6.283); ctx.fill();
+  // αφέλειες
+  ctx.fillStyle = '#2b1a2e';
+  ctx.beginPath();
+  ctx.arc(0,-u*0.79,u*0.168, Math.PI*1.05, Math.PI*1.95); ctx.fill();
+  // μάτια + χαμόγελο
+  ctx.fillStyle = '#231326';
+  ctx.beginPath(); ctx.arc(-u*0.055,-u*0.755,u*0.019,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.arc( u*0.055,-u*0.755,u*0.019,0,6.283); ctx.fill();
+  ctx.strokeStyle='#c8607a'; ctx.lineWidth=u*0.016;
+  ctx.beginPath(); ctx.arc(0,-u*0.715,u*0.045,0.25,Math.PI-0.25); ctx.stroke();
+  // τιάρα
+  ctx.fillStyle = '#ffd166';
+  ctx.beginPath();
+  ctx.moveTo(-u*0.12,-u*0.885);
+  ctx.lineTo(-u*0.05,-u*0.965);
+  ctx.lineTo( 0,     -u*0.895);
+  ctx.lineTo( u*0.05,-u*0.965);
+  ctx.lineTo( u*0.12,-u*0.885);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#ff5d8f';
+  ctx.beginPath(); ctx.arc(0,-u*0.905,u*0.022,0,6.283); ctx.fill();
+  ctx.restore();
+}
+
+function speechBubble(x, y, text, u){
+  ctx.font = 'bold '+Math.round(u*0.42)+'px "Trebuchet MS",Verdana,sans-serif';
+  const tw = ctx.measureText(text).width;
+  const pw = tw + u*0.7, ph = u*0.86, r = u*0.24;
+  const bx = x - pw/2, by = y - ph;
+  ctx.fillStyle = 'rgba(255,255,255,.96)';
+  ctx.strokeStyle = 'rgba(120,60,140,.5)'; ctx.lineWidth = Math.max(1,u*0.05);
+  ctx.beginPath();
+  ctx.moveTo(bx+r,by);
+  ctx.lineTo(bx+pw-r,by); ctx.quadraticCurveTo(bx+pw,by,bx+pw,by+r);
+  ctx.lineTo(bx+pw,by+ph-r); ctx.quadraticCurveTo(bx+pw,by+ph,bx+pw-r,by+ph);
+  ctx.lineTo(bx+pw*0.58,by+ph);
+  ctx.lineTo(bx+pw*0.48,by+ph+u*0.26);
+  ctx.lineTo(bx+pw*0.42,by+ph);
+  ctx.lineTo(bx+r,by+ph); ctx.quadraticCurveTo(bx,by+ph,bx,by+ph-r);
+  ctx.lineTo(bx,by+r); ctx.quadraticCurveTo(bx,by,bx+r,by);
+  ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#4a2060'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text, x, by+ph/2);
+  ctx.textAlign='start'; ctx.textBaseline='alphabetic';
+}
+
+function drawGenie(u){
+  const t = time*2.4;
+  // ουρά καπνού
+  const tg = ctx.createLinearGradient(0,u*0.1,0,u*1.25);
+  tg.addColorStop(0,'rgba(90,200,255,.75)'); tg.addColorStop(1,'rgba(120,220,255,0)');
+  ctx.fillStyle = tg;
+  ctx.beginPath();
+  ctx.moveTo(-u*0.30, u*0.14);
+  ctx.quadraticCurveTo(-u*0.34, u*0.75, u*0.06, u*1.25);
+  ctx.quadraticCurveTo(u*0.22, u*0.70, u*0.30, u*0.14);
+  ctx.closePath(); ctx.fill();
+  // κορμός
+  const g = ctx.createLinearGradient(0,-u*0.55,0,u*0.20);
+  g.addColorStop(0,'#7fe3ff'); g.addColorStop(1,'#1f86d8');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.ellipse(0,-u*0.16,u*0.36,u*0.36,0,0,6.283); ctx.fill();
+  // ζώνη
+  ctx.fillStyle = '#ffd166';
+  ctx.fillRect(-u*0.30, u*0.02, u*0.60, u*0.10);
+  ctx.fillStyle = '#e7453f';
+  ctx.fillRect(-u*0.30, u*0.12, u*0.60, u*0.05);
+  // χέρια
+  ctx.strokeStyle = '#4bb8f0'; ctx.lineWidth = u*0.17; ctx.lineCap = 'round';
+  const wave = Math.sin(t)*u*0.10;
+  ctx.beginPath();
+  ctx.moveTo(-u*0.28,-u*0.24); ctx.quadraticCurveTo(-u*0.62,-u*0.28,-u*0.70,-u*0.52-wave);
+  ctx.moveTo( u*0.28,-u*0.24); ctx.quadraticCurveTo( u*0.62,-u*0.28, u*0.70,-u*0.52+wave);
+  ctx.stroke();
+  // χρυσά βραχιόλια
+  ctx.fillStyle = '#ffd166';
+  ctx.save(); ctx.translate(-u*0.66,-u*0.44-wave); ctx.rotate(0.35);
+  ctx.fillRect(-u*0.13,-u*0.07,u*0.26,u*0.14); ctx.restore();
+  ctx.save(); ctx.translate( u*0.66,-u*0.44+wave); ctx.rotate(-0.35);
+  ctx.fillRect(-u*0.13,-u*0.07,u*0.26,u*0.14); ctx.restore();
+  // κεφάλι
+  ctx.fillStyle = '#63d2ff';
+  ctx.beginPath(); ctx.arc(0,-u*0.72,u*0.32,0,6.283); ctx.fill();
+  // αυτιά
+  ctx.beginPath(); ctx.ellipse(-u*0.33,-u*0.72,u*0.07,u*0.11,0,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.ellipse( u*0.33,-u*0.72,u*0.07,u*0.11,0,0,6.283); ctx.fill();
+  // αλογοουρά
+  ctx.strokeStyle = '#2b1a2e'; ctx.lineWidth = u*0.10; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(u*0.02,-u*1.02);
+  ctx.quadraticCurveTo(u*0.22,-u*1.34, u*0.44,-u*1.18); ctx.stroke();
+  // γενειάδα κάτω από το πιγούνι
+  ctx.fillStyle = '#2b1a2e';
+  ctx.beginPath();
+  ctx.moveTo(-u*0.13,-u*0.46);
+  ctx.quadraticCurveTo(0,-u*0.20, u*0.13,-u*0.46);
+  ctx.quadraticCurveTo(0,-u*0.38,-u*0.13,-u*0.46);
+  ctx.fill();
+  // πρόσωπο
+  ctx.fillStyle = '#0f3350';
+  ctx.beginPath(); ctx.ellipse(-u*0.11,-u*0.78,u*0.035,u*0.045,0,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.ellipse( u*0.11,-u*0.78,u*0.035,u*0.045,0,0,6.283); ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(-u*0.10,-u*0.80,u*0.013,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.arc( u*0.12,-u*0.80,u*0.013,0,6.283); ctx.fill();
+  // φρύδια (χαρούμενα, ανασηκωμένα)
+  ctx.strokeStyle = '#2b1a2e'; ctx.lineWidth = u*0.035; ctx.lineCap='round';
+  ctx.beginPath(); ctx.arc(-u*0.11,-u*0.83,u*0.09,Math.PI*1.12,Math.PI*1.88);
+  ctx.stroke();
+  ctx.beginPath(); ctx.arc( u*0.11,-u*0.83,u*0.09,Math.PI*1.12,Math.PI*1.88);
+  ctx.stroke();
+  // χαμόγελο
+  ctx.strokeStyle = '#0f3350'; ctx.lineWidth = u*0.032;
+  ctx.beginPath(); ctx.arc(0,-u*0.70,u*0.13,0.30,Math.PI-0.30); ctx.stroke();
+}
+
+function drawBoyOnCarpet(u){
+  const th = u*0.20, wav = u*0.07;
+  const topY = t => Math.sin(t*2.2+0.4)*wav;
+  // χαλί
+  const g = ctx.createLinearGradient(-u,0,u,0);
+  g.addColorStop(0,'#8e2f6e'); g.addColorStop(.35,'#c2447a');
+  g.addColorStop(.7,'#7b2f9e'); g.addColorStop(1,'#5c2382');
+  ctx.beginPath();
+  for(let i=0;i<=24;i++){ const t=-1+2*i/24; i?ctx.lineTo(t*u,topY(t)):ctx.moveTo(t*u,topY(t)); }
+  for(let i=24;i>=0;i--){ const t=-1+2*i/24; ctx.lineTo(t*u,topY(t)+th); }
+  ctx.closePath(); ctx.fillStyle=g; ctx.fill();
+  // χρυσή μπορντούρα
+  ctx.strokeStyle='#ffd166'; ctx.lineWidth=u*0.03;
+  ctx.beginPath();
+  for(let i=0;i<=24;i++){ const t=-1+2*i/24; const y=topY(t)+th*0.22; i?ctx.lineTo(t*u,y):ctx.moveTo(t*u,y); }
+  ctx.stroke();
+  ctx.beginPath();
+  for(let i=0;i<=24;i++){ const t=-1+2*i/24; const y=topY(t)+th*0.80; i?ctx.lineTo(t*u,y):ctx.moveTo(t*u,y); }
+  ctx.stroke();
+  // ρόμβοι
+  ctx.fillStyle='rgba(255,220,140,.75)';
+  for(let k=-3;k<=3;k++){
+    const t=k/3.4, x=t*u*0.86, y=topY(t)+th*0.5;
+    ctx.save(); ctx.translate(x,y); ctx.rotate(Math.PI/4);
+    ctx.fillRect(-u*0.022,-u*0.022,u*0.044,u*0.044); ctx.restore();
+  }
+  // κρόσσια
+  ctx.strokeStyle='#ffd166'; ctx.lineWidth=u*0.022;
+  for(let i=-2;i<=2;i++){
+    ctx.beginPath();
+    ctx.moveTo(-u, topY(-1)+th*(0.5+i*0.16));
+    ctx.lineTo(-u-u*0.11, topY(-1)+th*(0.5+i*0.24)); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(u, topY(1)+th*(0.5+i*0.16));
+    ctx.lineTo(u+u*0.11, topY(1)+th*(0.5+i*0.24)); ctx.stroke();
+  }
+  // αγόρι καθιστό
+  ctx.save();
+  ctx.translate(-u*0.06, topY(-0.06)+u*0.03);
+  ctx.scale(1.38,1.38);
+  const wave = Math.sin(time*4)*0.35;
+  // σταυρωμένα πόδια
+  ctx.strokeStyle='#e0b088'; ctx.lineWidth=u*0.10; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(-u*0.20,-u*0.02); ctx.quadraticCurveTo(-u*0.02,-u*0.12, u*0.20,-u*0.02);
+  ctx.moveTo(-u*0.18, u*0.02); ctx.quadraticCurveTo( u*0.02,-u*0.06, u*0.22, u*0.03);
+  ctx.stroke();
+  // κορμός με γιλέκο
+  ctx.fillStyle='#f4ece0';
+  ctx.beginPath(); ctx.ellipse(0,-u*0.24,u*0.15,u*0.20,0,0,6.283); ctx.fill();
+  ctx.fillStyle='#7b2f9e';
+  ctx.beginPath();
+  ctx.moveTo(-u*0.16,-u*0.42); ctx.lineTo(-u*0.05,-u*0.42);
+  ctx.lineTo(-u*0.05,-u*0.06); ctx.lineTo(-u*0.16,-u*0.06); ctx.closePath(); ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo( u*0.16,-u*0.42); ctx.lineTo( u*0.05,-u*0.42);
+  ctx.lineTo( u*0.05,-u*0.06); ctx.lineTo( u*0.16,-u*0.06); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#e7453f';
+  ctx.fillRect(-u*0.15,-u*0.10,u*0.30,u*0.05);
+  // χέρι που χαιρετάει
+  ctx.strokeStyle='#e0b088'; ctx.lineWidth=u*0.075;
+  ctx.save(); ctx.translate(u*0.13,-u*0.36); ctx.rotate(-0.5+wave);
+  ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(u*0.26,0); ctx.stroke();
+  ctx.fillStyle='#e0b088';
+  ctx.beginPath(); ctx.arc(u*0.28,0,u*0.055,0,6.283); ctx.fill();
+  ctx.restore();
+  // κεφάλι
+  ctx.fillStyle='#e8c39e';
+  ctx.beginPath(); ctx.arc(0,-u*0.56,u*0.18,0,6.283); ctx.fill();
+  ctx.fillStyle='#2b1a2e';
+  ctx.beginPath(); ctx.arc(0,-u*0.59,u*0.185,Math.PI*1.02,Math.PI*1.98); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(0,-u*0.72,u*0.185,u*0.06,0,0,6.283); ctx.fill();
+  ctx.fillStyle='#231326';
+  ctx.beginPath(); ctx.arc(-u*0.06,-u*0.56,u*0.022,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.arc( u*0.06,-u*0.56,u*0.022,0,6.283); ctx.fill();
+  ctx.strokeStyle='#a4506a'; ctx.lineWidth=u*0.02;
+  ctx.beginPath(); ctx.arc(0,-u*0.52,u*0.05,0.25,Math.PI-0.25); ctx.stroke();
+  ctx.restore();
+}
+
+function drawMonkey(u){
+  // ουρά
+  ctx.strokeStyle='#a86a3c'; ctx.lineWidth=u*0.09; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(-u*0.28,-u*0.10);
+  ctx.quadraticCurveTo(-u*0.75,-u*0.05,-u*0.55, u*0.38); ctx.stroke();
+  // φόρεμα κόκκινο
+  ctx.fillStyle='#e33b4e';
+  ctx.beginPath();
+  ctx.moveTo(-u*0.20,-u*0.42); ctx.lineTo(u*0.20,-u*0.42);
+  ctx.lineTo(u*0.34, u*0.10); ctx.lineTo(-u*0.34, u*0.10);
+  ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#ffd166';
+  ctx.fillRect(-u*0.30,u*0.02,u*0.60,u*0.06);
+  // χέρια & πόδια
+  ctx.strokeStyle='#a86a3c'; ctx.lineWidth=u*0.085;
+  ctx.beginPath();
+  ctx.moveTo(-u*0.20,-u*0.34); ctx.lineTo(-u*0.40,-u*0.10);
+  ctx.moveTo( u*0.20,-u*0.34); ctx.lineTo( u*0.42,-u*0.28);
+  ctx.moveTo(-u*0.12, u*0.10); ctx.lineTo(-u*0.14, u*0.30);
+  ctx.moveTo( u*0.12, u*0.10); ctx.lineTo( u*0.14, u*0.30);
+  ctx.stroke();
+  // κεφάλι
+  ctx.fillStyle='#a86a3c';
+  ctx.beginPath(); ctx.arc(0,-u*0.60,u*0.26,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.arc(-u*0.26,-u*0.62,u*0.09,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.arc( u*0.26,-u*0.62,u*0.09,0,6.283); ctx.fill();
+  ctx.fillStyle='#f0c9a0';
+  ctx.beginPath(); ctx.ellipse(0,-u*0.53,u*0.19,u*0.16,0,0,6.283); ctx.fill();
+  ctx.fillStyle='#231326';
+  ctx.beginPath(); ctx.arc(-u*0.08,-u*0.63,u*0.032,0,6.283); ctx.fill();
+  ctx.beginPath(); ctx.arc( u*0.08,-u*0.63,u*0.032,0,6.283); ctx.fill();
+  ctx.strokeStyle='#7a4a2a'; ctx.lineWidth=u*0.025;
+  ctx.beginPath(); ctx.arc(0,-u*0.52,u*0.08,0.2,Math.PI-0.2); ctx.stroke();
+  // φεσάκι
+  ctx.fillStyle='#e33b4e';
+  ctx.fillRect(-u*0.13,-u*0.99,u*0.26,u*0.20);
+  ctx.fillRect(-u*0.16,-u*0.81,u*0.32,u*0.05);
+  ctx.strokeStyle='#ffd166'; ctx.lineWidth=u*0.03;
+  ctx.beginPath(); ctx.moveTo(u*0.10,-u*0.97); ctx.lineTo(u*0.22,-u*0.86); ctx.stroke();
+}
+
+function drawCameo(){
+  if(!cameo) return;
+  const p = cameo.t/cameo.dur;
+  const ease = p<0.18 ? p/0.18 : (p>0.85 ? (1-p)/0.15 : 1);
+  const x = lerp(W*1.15, -W*0.25, p);
+  const y = cameo.y + Math.sin(cameo.t*2.2)*U*0.35;
+  const u = U*1.25;
+  ctx.save();
+  ctx.globalAlpha = clamp(ease,0,1);
+  ctx.translate(x,y);
+  if(cameo.type==='genie')  drawGenie(u);
+  if(cameo.type==='boy')    drawBoyOnCarpet(u);
+  if(cameo.type==='monkey') drawMonkey(u);
+  const bubbleY = cameo.type==='boy' ? -u*1.15 : -u*1.55;
+  if(p > 0.2 && p < 0.9) speechBubble(0, bubbleY, cameo.phrase, U);
+  ctx.restore();
+}
+
+function drawSparkles(){
+  for(const s of sparkles){
+    ctx.globalAlpha = clamp(s.life,0,1);
+    ctx.fillStyle = 'hsl('+s.hue+',100%,68%)';
+    ctx.beginPath(); ctx.arc(s.x, s.y, s.r*s.life+0.5, 0, 6.283); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+function drawHUD(){
+  if(state==='menu'||state==='over') return;
+  ctx.save();
+  ctx.textAlign='center';
+  ctx.fillStyle='rgba(0,0,0,.28)';
+  ctx.font = 'bold '+Math.round(U*1.15)+'px "Trebuchet MS",Verdana,sans-serif';
+  ctx.fillText(score, W/2+2, U*1.55+2);
+  ctx.fillStyle='#fff8dc';
+  ctx.fillText(score, W/2, U*1.5);
+  ctx.font = 'bold '+Math.round(U*0.36)+'px "Trebuchet MS",Verdana,sans-serif';
+  ctx.fillStyle='rgba(255,255,255,.75)';
+  ctx.textAlign='right';
+  ctx.fillText('ΡΕΚΟΡ '+best, W-14, U*0.75);
+  if(combo>1){
+    ctx.textAlign='center'; ctx.fillStyle='#8be9fd';
+    ctx.fillText('ΤΕΛΕΙΑ x'+combo, W/2, U*2.1);
+  }
+  ctx.restore();
+}
+
+function render(){
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  ctx.clearRect(0,0,W,H);
+  if(shake>0) ctx.translate(rand(-shake,shake), rand(-shake,shake));
+  drawBackground();
+  drawCarpetBg();
+
+  ctx.save();
+  ctx.translate(-scrollX, 0);
+  for(let i=0;i<platforms.length;i++){
+    const p = platforms[i];
+    if(p.x - scrollX > W+40 || p.x+p.w - scrollX < -40) continue;
+    drawPlatform(p, state!=='menu' && i === curIdx+1 && (state==='ready'||state==='grow'||state==='rotate'||state==='walk'));
+  }
+  drawStick();
+  if(state!=='menu'){
+    const walking = (state==='walk');
+    drawPrincess(hero.x, hero.y, U, walking?hero.walk:0, state==='fall'?hero.rot:0);
+  }
+  drawSparkles();
+  ctx.restore();
+
+  drawCameo();
+  drawHUD();
+}
+
+/* ========================= Βρόχος ========================= */
+let last = performance.now();
+function loop(now){
+  const dt = Math.min(0.05, (now-last)/1000);
+  last = now;
+  if(state !== 'menu' && state !== 'over') update(dt);
+  else { time += dt; if(cameo){cameo.t+=dt; if(cameo.t>cameo.dur) cameo=null;} }
+  render();
+  requestAnimationFrame(loop);
+}
+
+/* ========================= Εκκίνηση ========================= */
+resize();
+platforms = [{x:0, w:W*0.30, seed:12}];
+platforms.push(makePlatform(platforms[0]));
+scrollX = scrollTo = platforms[0].x + platforms[0].w - W*CFG.anchor;
+hero.x = platforms[0].x + platforms[0].w - U*0.42;
+hero.y = GROUND;
+requestAnimationFrame(loop);
+
+})();
+</script>
+</body>
+</html>

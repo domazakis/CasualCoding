@@ -1,0 +1,14 @@
+{
+  "name": "Πριγκίπισσα Κόρυ & το Μαγικό Χαλί",
+  "short_name": "Κόρυ",
+  "description": "Ένα απλό παιχνίδι με μαγικό κοντάρι για κινητό.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#160a2e",
+  "theme_color": "#2a1650",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
