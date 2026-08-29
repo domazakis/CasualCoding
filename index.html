@@ -46,6 +46,8 @@
   #tip.hidden{display:none}
   @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
   .sparkle{font-size:clamp(26px,8vw,40px)}
+  #version{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);right:14px;
+    font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.28);font-weight:normal}
 </style>
 </head>
 <body>
@@ -59,6 +61,7 @@
   <p>Κράτα πατημένο το δάχτυλό σου για να μεγαλώσει το μαγικό κοντάρι.<br>
      Άσε το να πέσει και πέρασε στο επόμενο παλάτι!</p>
   <button class="btn" id="playBtn">Ξεκίνα!</button>
+  <span id="version"></span>
 </div>
 
 <div id="overScreen" class="overlay hidden">
@@ -74,6 +77,11 @@
 <script>
 (function(){
 "use strict";
+
+/* Έκδοση παιχνιδιού - άλλαξέ την σε κάθε νέα αλλαγή, ώστε να φαίνεται
+   στην οθόνη έναρξης ποια έκδοση φόρτωσε το κινητό. */
+const APP_VERSION = 'v2';
+document.getElementById('version').textContent = APP_VERSION;
 
 /* ========================= Βασικά ========================= */
 const cvs = document.getElementById('game');
