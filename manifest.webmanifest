@@ -4,7 +4,7 @@
   "description": "Ένα απλό παιχνίδι με μαγικό κοντάρι για κινητό.",
   "start_url": "./index.html",
   "scope": "./",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "any",
   "background_color": "#160a2e",
   "theme_color": "#2a1650",
