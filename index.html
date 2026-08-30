@@ -2,10 +2,9 @@
 <html lang="el">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#2a1650">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Πριγκίπισσα Κόρυ &amp; το Μαγικό Χαλί - ένα απλό παιχνίδι με κοντάρι για κινητό.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -46,8 +45,8 @@
   #tip.hidden{display:none}
   @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
   .sparkle{font-size:clamp(26px,8vw,40px)}
-  #version{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);right:14px;
-    font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.28);font-weight:normal}
+  .version{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);right:16px;
+    font-size:13px;letter-spacing:1px;color:rgba(255,255,255,.5);font-weight:normal}
 </style>
 </head>
 <body>
@@ -61,7 +60,7 @@
   <p>Κράτα πατημένο το δάχτυλό σου για να μεγαλώσει το μαγικό κοντάρι.<br>
      Άσε το να πέσει και πέρασε στο επόμενο παλάτι!</p>
   <button class="btn" id="playBtn">Ξεκίνα!</button>
-  <span id="version"></span>
+  <span class="version"></span>
 </div>
 
 <div id="overScreen" class="overlay hidden">
@@ -72,6 +71,7 @@
   </div>
   <p id="overMsg">Η Κόρυ θέλει να ξαναπροσπαθήσει!</p>
   <button class="btn" id="againBtn">Ξανά!</button>
+  <span class="version"></span>
 </div>
 
 <script>
@@ -80,8 +80,8 @@
 
 /* Έκδοση παιχνιδιού - άλλαξέ την σε κάθε νέα αλλαγή, ώστε να φαίνεται
    στην οθόνη έναρξης ποια έκδοση φόρτωσε το κινητό. */
-const APP_VERSION = 'v3';
-document.getElementById('version').textContent = APP_VERSION;
+const APP_VERSION = 'v4';
+document.querySelectorAll('.version').forEach(el => el.textContent = APP_VERSION);
 
 /* Οι browsers στο κινητό κρατούν τη σελίδα στη μνήμη τους για ώρα, οπότε μια νέα
    έκδοση μπορεί να αργήσει να φανεί. Εδώ ρωτάμε τον server κατευθείαν (χωρίς μνήμη)
