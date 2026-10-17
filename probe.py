@@ -55,45 +55,14 @@ q = urllib.parse.quote
 # είδος: "list" = σελίδα αποτελεσμάτων, "detail" = σελίδα μίας αγγελίας,
 #        "discover" = σελίδα όπου ψάχνουμε φόρμες/API, "api" = JSON
 TESTS = [
-    # kariera.gr
-    ("kariera", "αναζήτηση events", "https://www.kariera.gr/jobs?title=events&location=Athens", r"/jobs/[a-z0-9-]+/(\d{5,})", "list"),
-    ("kariera", "αναζήτηση επικοινωνία", f"https://www.kariera.gr/jobs?title={q('επικοινωνία')}&location=Athens", r"/jobs/[a-z0-9-]+/(\d{5,})", "list"),
-    ("kariera", "αναζήτηση events σελ. 2 (page=2)", "https://www.kariera.gr/jobs?title=events&location=Athens&page=2", r"/jobs/[a-z0-9-]+/(\d{5,})", "list"),
-    ("kariera", "κατηγορία PR", "https://www.kariera.gr/en/jobs/public-relations-jobs", r"/jobs/[a-z0-9-]+/(\d{5,})", "list"),
-    ("kariera", "κατηγορία marketing", "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs", r"/jobs/[a-z0-9-]+/(\d{5,})", "list"),
-    ("kariera", "κατηγορία marketing σελ. 2", "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs?page=2", r"/jobs/[a-z0-9-]+/(\d{5,})", "list"),
-    ("kariera", "σελίδα αγγελίας (Head of Communications, XM)", "https://www.kariera.gr/jobs/marketing-or-advertising-jobs/347561", None, "detail"),
-    # Indeed
-    ("indeed", "αναζήτηση events, 2 ημέρες", f"https://gr.indeed.com/jobs?q=events&l={q('Αθήνα')}&sort=date&fromage=2", r"(?:jk=|data-jk=\")([0-9a-f]{16})", "list"),
-    ("indeed", "αναζήτηση επικοινωνία, 2 ημέρες", f"https://gr.indeed.com/jobs?q={q('επικοινωνία')}&l={q('Αθήνα')}&sort=date&fromage=2", r"(?:jk=|data-jk=\")([0-9a-f]{16})", "list"),
-    ("indeed", "RSS events", f"https://gr.indeed.com/rss?q=events&l={q('Αθήνα')}&sort=date", r"jk=([0-9a-f]{16})", "list"),
-    # Jooble
-    ("jooble", "events Αθήνα", "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CE%BF%CF%81%CE%B3%CE%AC%CE%BD%CF%89%CF%83%CE%B7-events/%CE%91%CE%B8%CE%AE%CE%BD%CE%B1", r"/r?jdp/(-?\d{6,})", "list"),
-    ("jooble", "υπεύθυνος επικοινωνίας", "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CF%85%CF%80%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CE%BF%CF%82-%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1%CF%82", r"/r?jdp/(-?\d{6,})", "list"),
-    ("jooble", "events Αθήνα σελ. 2 (p=2)", "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CE%BF%CF%81%CE%B3%CE%AC%CE%BD%CF%89%CF%83%CE%B7-events/%CE%91%CE%B8%CE%AE%CE%BD%CE%B1?p=2", r"/r?jdp/(-?\d{6,})", "list"),
-    ("jooble", "σελίδα αγγελίας (Event Project Manager, linq)", "https://gr.jooble.org/jdp/1397376058319422201", None, "detail"),
-    # jobfind.gr
-    ("jobfind", "Αθήνα χωρίς φίλτρο (σελίδα + φόρμες)", "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "discover"),
-    ("jobfind", "keywords=events", "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?keywords=events", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "list"),
-    ("jobfind", "keyword=events", "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?keyword=events", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "list"),
-    ("jobfind", "q=events", "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?q=events", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "list"),
-    ("jobfind", "/JobAds/Search?keywords=events", "https://www.jobfind.gr/JobAds/Search?keywords=events", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "list"),
-    # skywalker.gr
-    ("skywalker", "σελίδα αγγελιών (σελίδα + scripts/API)", "https://www.skywalker.gr/el/aggelies-ergasias", r"/el/aggelia-ergasias/[^\"'\s]*?(\d{4,})", "discover"),
-    ("skywalker", "keywords=events", "https://www.skywalker.gr/el/aggelies-ergasias?keywords=events", r"/el/aggelia-ergasias/[^\"'\s]*?(\d{4,})", "list"),
-    # Workable (δημόσια μηχανή αναζήτησης θέσεων)
-    ("workable", "αναζήτηση communications Αθήνα", "https://jobs.workable.com/search?location=Athens&query=communications", r"/view/([A-Za-z0-9]{6,})", "list"),
-    ("workable", "API communications Αθήνα", "https://jobs.workable.com/api/v1/jobs?query=communications&location=Athens", r"\"id\"\s*:\s*\"([A-Za-z0-9-]{6,})\"", "api"),
-    # Careerjet
-    ("careerjet", "events Αθήνα", f"https://www.careerjet.gr/jobs?s=events&l={q('Αθήνα')}", r"/jobad/([a-z0-9]{10,})", "list"),
-    # Ιδρύματα / προκηρύξεις
-    ("onassis", "smartcv", "https://apply.smartcv.co/onassis-group/", r"/onassis-group/job/(\w+)", "list"),
-    ("snf", "job openings", "https://www.snf.org/en/about/career-opportunities/job-openings/", r"job-openings/([a-z0-9-]{4,})", "list"),
-    ("alfavita", "εργασία", "https://www.alfavita.gr/ergasia", r"/ergasia/(\d{6})_", "list"),
-    ("proson", "προκηρύξεις", "https://www.proson.gr/ergasia/prokiryxeis", r"/ergasia/prokiryxeis/(\d+)_", "list"),
-    # Μόνο έλεγχος robots.txt — δεν ανοίγονται αν απαγορεύονται
-    ("linkedin", "guest αναζήτηση (μόνο αν επιτρέπεται)", "https://www.linkedin.com/jobs/search?keywords=communications&location=Athens", r"/jobs/view/[^\"']*?(\d{8,})", "list"),
-    ("xe", "αγγελίες εργασίας (μόνο αν επιτρέπεται)", "https://www.xe.gr/ergasia/", r"/ergasia/[^\"']*?(\d{6,})", "list"),
+    ("jobfind", "σελίδα ειδικοτήτων (σύνδεσμοι κατηγοριών)", "https://www.jobfind.gr/JobAdsSearchCat/GR/Theseis-Ergasias-ana-Eidikotita", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "discover"),
+    ("jobfind", "σελίδα αναζήτησης (φόρμες)", "https://www.jobfind.gr/JobAdsSearch/GR/Theseis_Ergasias", r"/JobAd/View/GR/Theseis_Ergasias/([0-9a-fA-F-]{36})", "discover"),
+    ("jobfind", "σελίδα αγγελίας (Στέλεχος Συνεδρίων)", "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/eee4f5bc-a3b0-49e0-8c2d-5177dc8eca90/", None, "detail"),
+    ("snf", "job openings (σύνδεσμοι)", "https://www.snf.org/en/about/career-opportunities/job-openings/", r"(career-opportunities/[a-z0-9-]+/[a-z0-9-]+)", "discover"),
+    ("workable", "API events Αθήνα", "https://jobs.workable.com/api/v1/jobs?query=events&location=Athens", r"\"id\"\s*:\s*\"([A-Za-z0-9-]{6,})\"", "api"),
+    ("workable", "API επικοινωνία Ελλάδα", "https://jobs.workable.com/api/v1/jobs?query=%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1&location=Greece", r"\"id\"\s*:\s*\"([A-Za-z0-9-]{6,})\"", "api"),
+    ("careerjet", "αναζήτηση events", "https://www.careerjet.gr/search/jobs?s=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1", r"/jobad/([a-z0-9]{10,})", "list"),
+    ("kariera", "σελίδα αγγελίας εξωτερικής αίτησης (PHAEA Communications)", "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/352467", None, "detail"),
 ]
 
 APPLY_HINTS = re.compile(
@@ -175,7 +144,7 @@ def discover(soup: BeautifulSoup, html: str):
     api_hits = sorted(set(re.findall(r"[\"'](/?(?:api|graphql|_next/data)[^\"'\s]{0,120})[\"']", html)))[:30]
     search_links = sorted(
         {a["href"] for a in soup.find_all("a", href=True) if re.search(r"search|keyword|aggelies-ergasias\?", a["href"], re.I)}
-    )[:30]
+    )[:80]
     next_data = bool(soup.find("script", id="__NEXT_DATA__"))
     return {"forms": forms, "scripts": scripts, "api_strings": api_hits, "search_links": search_links, "__NEXT_DATA__": next_data}
 
@@ -231,6 +200,11 @@ def run():
             if kind == "api":
                 rec["content_type"] = r.headers.get("content-type", "")
                 rec["body_head"] = html[:400]
+                try:
+                    js = r.json(); j0 = (js.get("jobs") or [{}])[0]
+                    rec["api_total"] = js.get("totalSize"); rec["api_fields"] = {k: (str(v)[:120]) for k, v in j0.items() if k != "description"}
+                except Exception:
+                    pass
         except Exception as e:  # noqa: BLE001
             rec["error"] = f"{type(e).__name__}: {str(e)[:200]}"
         results.append(rec)
@@ -276,7 +250,7 @@ def write_report(results):
         if r.get("final_url") and r["final_url"] != r["url"]:
             lines.append(f"- Τελικό URL: {r['final_url']}")
         lines.append(f"- {r['robots']} · επιτρέπεται: {r['robots_allows']}")
-        for k in ("http", "seconds", "block_signs", "ids_in_html", "anchors_with_title", "error", "content_type"):
+        for k in ("http", "seconds", "block_signs", "ids_in_html", "anchors_with_title", "error", "content_type", "api_total", "api_fields"):
             if k in r and r[k] not in (None, [], ""):
                 lines.append(f"- {k}: {r[k]}")
         if r.get("samples"):
@@ -300,7 +274,7 @@ def write_report(results):
             if d["api_strings"]:
                 lines.append(f"  - API strings: {d['api_strings']}")
             if d["search_links"]:
-                lines.append(f"  - σύνδεσμοι αναζήτησης: {d['search_links'][:15]}")
+                lines.append(f"  - σύνδεσμοι αναζήτησης: {d['search_links'][:80]}")
             if d["scripts"]:
                 lines.append(f"  - scripts: {d['scripts'][:12]}")
         if r.get("body_head"):
