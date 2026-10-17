@@ -1,0 +1,1365 @@
+{
+ "run": "2026-10-17 21:16 UTC",
+ "results": [
+  {
+   "source": "kariera",
+   "label": "αναζήτηση events",
+   "url": "https://www.kariera.gr/jobs?title=events&location=Athens",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/jobs?title=events&location=Athens",
+   "bytes": 1313947,
+   "seconds": 1.0,
+   "title": "42 Θέσεις εργασίας σε Athens - events | kariera.gr",
+   "block_signs": [],
+   "ids_in_html": 61,
+   "ids_sample": [
+    "346297",
+    "346320",
+    "346594",
+    "346669",
+    "347344",
+    "347378",
+    "347560",
+    "347561"
+   ],
+   "anchors_with_title": 61,
+   "samples": [
+    {
+     "id": "352306",
+     "title": "My Market | Κηφισιά | Άμεση Πρόσληψη",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352306"
+    },
+    {
+     "id": "352804",
+     "title": "My Market | Υπάλληλος Λιανικής | Χαλάνδρι | Full Time",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352804"
+    },
+    {
+     "id": "349507",
+     "title": "Υπάλληλος Καταστήματος METRO Cash & Carry - Κατάστημα Εθνικής / Μεταμόρφωσης",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/349507"
+    },
+    {
+     "id": "352303",
+     "title": "My Market | Ν.Πεντέλη | Άμεση Πρόσληψη",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352303"
+    },
+    {
+     "id": "352091",
+     "title": "Events & Communication",
+     "url": "https://www.kariera.gr/jobs/marketing-or-advertising-jobs/352091"
+    },
+    {
+     "id": "354008",
+     "title": "EVENT REPRESENTATIVE",
+     "url": "https://www.kariera.gr/jobs/marketing-or-advertising-jobs/354008"
+    },
+    {
+     "id": "350964",
+     "title": "Marketing Coordinator",
+     "url": "https://www.kariera.gr/jobs/marketing-or-advertising-jobs/350964"
+    },
+    {
+     "id": "350984",
+     "title": "Γερμανόφωνος Back Office Υπάλληλος",
+     "url": "https://www.kariera.gr/jobs/call-center-or-customer-support-jobs/350984"
+    }
+   ]
+  },
+  {
+   "source": "kariera",
+   "label": "αναζήτηση επικοινωνία",
+   "url": "https://www.kariera.gr/jobs?title=%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1&location=Athens",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/jobs?title=%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1&location=Athens",
+   "bytes": 1515536,
+   "seconds": 1.5,
+   "title": "144 Θέσεις εργασίας σε Athens - επικοινωνία | kariera.gr",
+   "block_signs": [],
+   "ids_in_html": 81,
+   "ids_sample": [
+    "301236",
+    "346316",
+    "346318",
+    "346319",
+    "346584",
+    "346586",
+    "346707",
+    "347193"
+   ],
+   "anchors_with_title": 81,
+   "samples": [
+    {
+     "id": "349389",
+     "title": "Πωλήσεις (από 1.100€,bonus,αμάξι)",
+     "url": "https://www.kariera.gr/jobs/sales-or-business-development-or-account-management-jobs/349389"
+    },
+    {
+     "id": "352310",
+     "title": "Πωλητής-τρια | Κατάστημα Super Market | Κορωπί",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352310"
+    },
+    {
+     "id": "350409",
+     "title": "Πωλητής/τρια Samsonite | Athens Designer Outlet, Σπάτα",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/350409"
+    },
+    {
+     "id": "352715",
+     "title": "Mastic Spa | Beauty Advisor | Part-Time",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352715"
+    },
+    {
+     "id": "353778",
+     "title": "Marketing- Επικοινωνία- Πωλήσεις",
+     "url": "https://www.kariera.gr/jobs/other-jobs/353778"
+    },
+    {
+     "id": "353571",
+     "title": "ΑΠΟ ΤΗΝ ΕΠΙΚΟΙΝΩΝΙΑ ΣΤΟ MANAGEMENT",
+     "url": "https://www.kariera.gr/jobs/human-resources-jobs/353571"
+    },
+    {
+     "id": "351417",
+     "title": "Σύμβουλος Πωλήσεων – YAMAMAY - Ερμού",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/351417"
+    },
+    {
+     "id": "351877",
+     "title": "Σύμβουλος Πωλήσεων – YAMAMAY - The Mall Athens",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/351877"
+    }
+   ]
+  },
+  {
+   "source": "kariera",
+   "label": "αναζήτηση events σελ. 2 (page=2)",
+   "url": "https://www.kariera.gr/jobs?title=events&location=Athens&page=2",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/jobs?title=events&location=Athens&page=2",
+   "bytes": 681276,
+   "seconds": 1.0,
+   "title": "42 Θέσεις εργασίας σε Athens - events | kariera.gr",
+   "block_signs": [],
+   "ids_in_html": 4,
+   "ids_sample": [
+    "349680",
+    "352253",
+    "352303",
+    "352804"
+   ],
+   "anchors_with_title": 4,
+   "samples": [
+    {
+     "id": "349680",
+     "title": "Υπάλληλος Καταστήματος METRO Cash & Carry - Κατάστημα Εθνικής / Μεταμόρφωσης",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/349680"
+    },
+    {
+     "id": "352303",
+     "title": "My Market | Ν.Πεντέλη | Άμεση Πρόσληψη",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352303"
+    },
+    {
+     "id": "352253",
+     "title": "METRO Cash & Carry | Μεταμόρφωση | Άμεση Πρόσληψη",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352253"
+    },
+    {
+     "id": "352804",
+     "title": "My Market | Υπάλληλος Λιανικής | Χαλάνδρι | Full Time",
+     "url": "https://www.kariera.gr/jobs/retail-jobs/352804"
+    }
+   ]
+  },
+  {
+   "source": "kariera",
+   "label": "κατηγορία PR",
+   "url": "https://www.kariera.gr/en/jobs/public-relations-jobs",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/en/jobs/public-relations-jobs",
+   "bytes": 762159,
+   "seconds": 1.1,
+   "title": "17 Jobs Public Relations | kariera.gr",
+   "block_signs": [],
+   "ids_in_html": 17,
+   "ids_sample": [
+    "347420",
+    "347666",
+    "347672",
+    "348836",
+    "349528",
+    "349899",
+    "349990",
+    "350884"
+   ],
+   "anchors_with_title": 17,
+   "samples": [
+    {
+     "id": "353878",
+     "title": "Υπάλληλος Εισπράξεων & Εξυπηρέτησης (Αττική)",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/353878"
+    },
+    {
+     "id": "353831",
+     "title": "Front Office Agent",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/353831"
+    },
+    {
+     "id": "353269",
+     "title": "Εκπρόσωπος Επικοινωνίας για Μ.Κ.Ο.",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/353269"
+    },
+    {
+     "id": "353263",
+     "title": "Front Office Agent",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/353263"
+    },
+    {
+     "id": "352525",
+     "title": "Front Office Agent",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/352525"
+    },
+    {
+     "id": "351817",
+     "title": "Sales & Guest Relations Executive",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/351817"
+    },
+    {
+     "id": "351433",
+     "title": "Front Office Agent",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/351433"
+    },
+    {
+     "id": "351109",
+     "title": "Brand Ambassador για Διεθνείς Μ.Κ.Ο.",
+     "url": "https://www.kariera.gr/en/jobs/public-relations-jobs/351109"
+    }
+   ]
+  },
+  {
+   "source": "kariera",
+   "label": "κατηγορία marketing",
+   "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs",
+   "bytes": 1362213,
+   "seconds": 1.2,
+   "title": "114 Jobs Marketing / Advertising | kariera.gr",
+   "block_signs": [],
+   "ids_in_html": 88,
+   "ids_sample": [
+    "337066",
+    "339301",
+    "346521",
+    "347193",
+    "347411",
+    "347477",
+    "347560",
+    "347561"
+   ],
+   "anchors_with_title": 88,
+   "samples": [
+    {
+     "id": "351643",
+     "title": "Sports Marketing ASICS Greece",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/351643"
+    },
+    {
+     "id": "354000",
+     "title": "Promoter Τραπεζικού Προϊόντος - 4ωρο/600€",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/354000"
+    },
+    {
+     "id": "351644",
+     "title": "Digital and Social Media Marketing",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/351644"
+    },
+    {
+     "id": "348969",
+     "title": "Marketing Manager",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/348969"
+    },
+    {
+     "id": "354053",
+     "title": "MARKETING & SOCIAL MEDIA DESIGN CONSULTANT",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/354053"
+    },
+    {
+     "id": "354008",
+     "title": "EVENT REPRESENTATIVE",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/354008"
+    },
+    {
+     "id": "347193",
+     "title": "Entry Level Marketing Job στην Αθήνα | Εκπαίδευση & Άμεση Πρόσληψη",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/347193"
+    },
+    {
+     "id": "352386",
+     "title": "Marketing - HR - Sales | Επίσημος Συνεργάτης Metlen Energy & Metals | Μισθός 1.250€",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/352386"
+    }
+   ]
+  },
+  {
+   "source": "kariera",
+   "label": "κατηγορία marketing σελ. 2",
+   "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs?page=2",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs?page=2",
+   "bytes": 1431985,
+   "seconds": 1.1,
+   "title": "114 Jobs Marketing / Advertising | kariera.gr",
+   "block_signs": [],
+   "ids_in_html": 83,
+   "ids_sample": [
+    "339301",
+    "343712",
+    "346521",
+    "347193",
+    "347411",
+    "347477",
+    "347560",
+    "347561"
+   ],
+   "anchors_with_title": 83,
+   "samples": [
+    {
+     "id": "348969",
+     "title": "Marketing Manager",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/348969"
+    },
+    {
+     "id": "351647",
+     "title": "Marketing & Brand Strategy at ASICS Greece",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/351647"
+    },
+    {
+     "id": "352535",
+     "title": "Marketing Manager ASICS Greece",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/352535"
+    },
+    {
+     "id": "351644",
+     "title": "Digital and Social Media Marketing",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/351644"
+    },
+    {
+     "id": "351399",
+     "title": "Product Manager | Medochemie (Pharmaceutical)",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/351399"
+    },
+    {
+     "id": "351383",
+     "title": "Head of Media",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/351383"
+    },
+    {
+     "id": "347193",
+     "title": "Entry Level Marketing Job στην Αθήνα | Εκπαίδευση & Άμεση Πρόσληψη",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/347193"
+    },
+    {
+     "id": "352386",
+     "title": "Marketing - HR - Sales | Επίσημος Συνεργάτης Metlen Energy & Metals | Μισθός 1.250€",
+     "url": "https://www.kariera.gr/en/jobs/marketing-or-advertising-jobs/352386"
+    }
+   ]
+  },
+  {
+   "source": "kariera",
+   "label": "σελίδα αγγελίας (Head of Communications, XM)",
+   "url": "https://www.kariera.gr/jobs/marketing-or-advertising-jobs/347561",
+   "kind": "detail",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.kariera.gr/jobs/marketing-or-advertising-jobs/347561",
+   "bytes": 356649,
+   "seconds": 0.7,
+   "title": "Head of Communications — XM | Αθήνα",
+   "block_signs": [
+    "captcha"
+   ],
+   "apply": {
+    "apply_links": [
+     {
+      "text": "Οδηγός Καριέρας",
+      "href": "https://www.kariera.gr/career-guide"
+     },
+     {
+      "text": "Blog",
+      "href": "https://www.kariera.gr/career-guide/"
+     },
+     {
+      "text": "Οδηγός Καριέρας",
+      "href": "https://employers.kariera.gr/employer-branding-solutions/career-guide"
+     }
+    ],
+    "apply_buttons": [
+     "Κάνε αίτηση"
+    ],
+    "emails_in_text": [],
+    "text_chars": 5970
+   }
+  },
+  {
+   "source": "indeed",
+   "label": "αναζήτηση events, 2 ημέρες",
+   "url": "https://gr.indeed.com/jobs?q=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1&sort=date&fromage=2",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.indeed.com/jobs?q=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1&sort=date&fromage=2",
+   "bytes": 28040,
+   "seconds": 0.0,
+   "title": "Security Check - Indeed.com",
+   "block_signs": [
+    "challenge-platform",
+    "captcha"
+   ],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "indeed",
+   "label": "αναζήτηση επικοινωνία, 2 ημέρες",
+   "url": "https://gr.indeed.com/jobs?q=%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1&sort=date&fromage=2",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.indeed.com/jobs?q=%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1&sort=date&fromage=2",
+   "bytes": 28306,
+   "seconds": 0.1,
+   "title": "Security Check - Indeed.com",
+   "block_signs": [
+    "challenge-platform",
+    "captcha"
+   ],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "indeed",
+   "label": "RSS events",
+   "url": "https://gr.indeed.com/rss?q=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1&sort=date",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.indeed.com/rss?q=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1&sort=date",
+   "bytes": 27992,
+   "seconds": 0.1,
+   "title": "Security Check - Indeed.com",
+   "block_signs": [
+    "challenge-platform",
+    "captcha"
+   ],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "jooble",
+   "label": "events Αθήνα",
+   "url": "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CE%BF%CF%81%CE%B3%CE%AC%CE%BD%CF%89%CF%83%CE%B7-events/%CE%91%CE%B8%CE%AE%CE%BD%CE%B1",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CE%BF%CF%81%CE%B3%CE%AC%CE%BD%CF%89%CF%83%CE%B7-events/%CE%91%CE%B8%CE%AE%CE%BD%CE%B1",
+   "bytes": 6274,
+   "seconds": 0.0,
+   "title": "Just a moment...",
+   "block_signs": [
+    "just a moment",
+    "challenge-platform"
+   ],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "jooble",
+   "label": "υπεύθυνος επικοινωνίας",
+   "url": "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CF%85%CF%80%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CE%BF%CF%82-%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1%CF%82",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CF%85%CF%80%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CE%BF%CF%82-%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1%CF%82",
+   "bytes": 6461,
+   "seconds": 0.1,
+   "title": "Just a moment...",
+   "block_signs": [
+    "just a moment",
+    "challenge-platform"
+   ],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "jooble",
+   "label": "events Αθήνα σελ. 2 (p=2)",
+   "url": "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CE%BF%CF%81%CE%B3%CE%AC%CE%BD%CF%89%CF%83%CE%B7-events/%CE%91%CE%B8%CE%AE%CE%BD%CE%B1?p=2",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.jooble.org/%CE%B5%CF%81%CE%B3%CE%B1%CF%83%CE%AF%CE%B1-%CE%BF%CF%81%CE%B3%CE%AC%CE%BD%CF%89%CF%83%CE%B7-events/%CE%91%CE%B8%CE%AE%CE%BD%CE%B1?p=2",
+   "bytes": 6301,
+   "seconds": 0.1,
+   "title": "Just a moment...",
+   "block_signs": [
+    "just a moment",
+    "challenge-platform"
+   ],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "jooble",
+   "label": "σελίδα αγγελίας (Event Project Manager, linq)",
+   "url": "https://gr.jooble.org/jdp/1397376058319422201",
+   "kind": "detail",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 403,
+   "final_url": "https://gr.jooble.org/jdp/1397376058319422201",
+   "bytes": 5828,
+   "seconds": 0.1,
+   "title": "Just a moment...",
+   "block_signs": [
+    "just a moment",
+    "challenge-platform"
+   ],
+   "apply": {
+    "apply_links": [],
+    "apply_buttons": [],
+    "emails_in_text": [],
+    "text_chars": 58
+   }
+  },
+  {
+   "source": "jobfind",
+   "label": "Αθήνα χωρίς φίλτρο (σελίδα + φόρμες)",
+   "url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias",
+   "kind": "discover",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias",
+   "bytes": 284811,
+   "seconds": 1.3,
+   "title": "Θέσεις Εργασίας ΑΘΗΝΑ - ΑΤΤΙΚΗ | Jobfind.gr",
+   "block_signs": [],
+   "ids_in_html": 35,
+   "ids_sample": [
+    "07378656-017f-4d4a-a88a-740c8eb1663f",
+    "0d785f11-67bc-4d02-89f5-e0b67156f536",
+    "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+    "1e5a70e0-c616-4cd3-9a59-2dbc7c8ae957",
+    "219c0e55-c287-44e0-8fdb-0373abb8b40b",
+    "24862119-74a5-4675-9c35-cd37e23f709e",
+    "3409a375-8317-46a9-8a63-2081e5d5f12e",
+    "37a4d06e-b264-41e2-a0ad-a0079e9d52ae"
+   ],
+   "anchors_with_title": 35,
+   "samples": [
+    {
+     "id": "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+     "title": "Τεχνικός Βάρδιας Συστημάτων Διοδίων (Ηλεκτρολόγος) | Αφίδνες",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/1b55cfbd-1e1a-4a73-962d-916cc766bb83/"
+    },
+    {
+     "id": "e5d6eeca-e9e1-4d88-b886-96f601619b06",
+     "title": "Courier - Διανομέας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/e5d6eeca-e9e1-4d88-b886-96f601619b06/"
+    },
+    {
+     "id": "7333dbd1-7e8d-41ca-8170-f7949ea5398f",
+     "title": "Πωλητές / Πωλήτριες (Αεροδρόμιο Αθηνών)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/7333dbd1-7e8d-41ca-8170-f7949ea5398f/"
+    },
+    {
+     "id": "45ca4563-c252-499b-b83e-f12ce10c169c",
+     "title": "Πωλητές / Πωλήτριες - Tαμίες | WHSmith Greece",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/45ca4563-c252-499b-b83e-f12ce10c169c/"
+    },
+    {
+     "id": "07378656-017f-4d4a-a88a-740c8eb1663f",
+     "title": "Soho Account Manager",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/07378656-017f-4d4a-a88a-740c8eb1663f/"
+    },
+    {
+     "id": "c03ba406-4721-4860-947b-ce642b745c30",
+     "title": "Οδηγός Γ΄ κατηγορίας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/c03ba406-4721-4860-947b-ce642b745c30/"
+    },
+    {
+     "id": "59043ce0-0972-4d43-b9c8-c3bef883b32d",
+     "title": "Επαγγελματίας Οδηγός διανομής φαρμάκων (Δίπλωμα ΙΧ)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/59043ce0-0972-4d43-b9c8-c3bef883b32d/"
+    },
+    {
+     "id": "9bc06842-030c-4c23-9133-f92ce69eed6a",
+     "title": "Υπευθυνη Λογιστηριου με γνωση CRM - ERP",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/9bc06842-030c-4c23-9133-f92ce69eed6a/"
+    }
+   ],
+   "discover": {
+    "forms": [
+     {
+      "action": "./Theseis_Ergasias",
+      "method": "post",
+      "inputs": [
+       [
+        "__EVENTTARGET",
+        "hidden"
+       ],
+       [
+        "__EVENTARGUMENT",
+        "hidden"
+       ],
+       [
+        "__VIEWSTATE",
+        "hidden"
+       ],
+       [
+        "__VIEWSTATEGENERATOR",
+        "hidden"
+       ],
+       [
+        "__EVENTVALIDATION",
+        "hidden"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$hdnCatsFrom",
+        "hidden"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories",
+        "hidden"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB0",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB1",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB2",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB3",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB4",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB5",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB6",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB7",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB8",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB9",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB10",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB11",
+        "text"
+       ],
+       [
+        "ctl00$cphContent$dxcbModal$dxrbtnlMainCategories$RB12",
+        "text"
+       ]
+      ]
+     }
+    ],
+    "scripts": [
+     "https://www.googletagmanager.com/gtag/js?id=AW-1042869916",
+     "https://clientcdn.pushengage.com/core/fe8f814d-f50b-4621-b1d9-b2f086cb2e88.js",
+     "/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZADJrrf7czTQpo-ZnQOnQgPcbGvEGRzG2pt3CVcF7HQT5aAvEkgMcAIJyuaoMmmEsg2&t=638901644248157332",
+     "/DXR.axd?r=1_11,1_252,1_12,1_23,1_64,1_14,1_15,1_48,1_17,1_9,1_183,1_186,1_189,1_182,1_41-sTZOr",
+     "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js",
+     "/js2/bootstrap.min.js",
+     "/js2/docs.min.js",
+     "/js2/ie10-viewport-bug-workaround.js"
+    ],
+    "api_strings": [],
+    "search_links": [
+     "/JobAdsSearch/GR/Theseis_Ergasias",
+     "/JobAdsSearchAreas/GR/theseis-ergasias-ana-perioxi",
+     "/JobAdsSearchCat/GR/Theseis-Ergasias-ana-Eidikotita"
+    ],
+    "__NEXT_DATA__": false
+   }
+  },
+  {
+   "source": "jobfind",
+   "label": "keywords=events",
+   "url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?keywords=events",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?keywords=events",
+   "bytes": 284987,
+   "seconds": 0.7,
+   "title": "Θέσεις Εργασίας ΑΘΗΝΑ - ΑΤΤΙΚΗ | Jobfind.gr",
+   "block_signs": [],
+   "ids_in_html": 35,
+   "ids_sample": [
+    "07378656-017f-4d4a-a88a-740c8eb1663f",
+    "0d785f11-67bc-4d02-89f5-e0b67156f536",
+    "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+    "1e5a70e0-c616-4cd3-9a59-2dbc7c8ae957",
+    "219c0e55-c287-44e0-8fdb-0373abb8b40b",
+    "24862119-74a5-4675-9c35-cd37e23f709e",
+    "3409a375-8317-46a9-8a63-2081e5d5f12e",
+    "37a4d06e-b264-41e2-a0ad-a0079e9d52ae"
+   ],
+   "anchors_with_title": 35,
+   "samples": [
+    {
+     "id": "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+     "title": "Τεχνικός Βάρδιας Συστημάτων Διοδίων (Ηλεκτρολόγος) | Αφίδνες",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/1b55cfbd-1e1a-4a73-962d-916cc766bb83/"
+    },
+    {
+     "id": "e5d6eeca-e9e1-4d88-b886-96f601619b06",
+     "title": "Courier - Διανομέας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/e5d6eeca-e9e1-4d88-b886-96f601619b06/"
+    },
+    {
+     "id": "7333dbd1-7e8d-41ca-8170-f7949ea5398f",
+     "title": "Πωλητές / Πωλήτριες (Αεροδρόμιο Αθηνών)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/7333dbd1-7e8d-41ca-8170-f7949ea5398f/"
+    },
+    {
+     "id": "45ca4563-c252-499b-b83e-f12ce10c169c",
+     "title": "Πωλητές / Πωλήτριες - Tαμίες | WHSmith Greece",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/45ca4563-c252-499b-b83e-f12ce10c169c/"
+    },
+    {
+     "id": "07378656-017f-4d4a-a88a-740c8eb1663f",
+     "title": "Soho Account Manager",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/07378656-017f-4d4a-a88a-740c8eb1663f/"
+    },
+    {
+     "id": "c03ba406-4721-4860-947b-ce642b745c30",
+     "title": "Οδηγός Γ΄ κατηγορίας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/c03ba406-4721-4860-947b-ce642b745c30/"
+    },
+    {
+     "id": "59043ce0-0972-4d43-b9c8-c3bef883b32d",
+     "title": "Επαγγελματίας Οδηγός διανομής φαρμάκων (Δίπλωμα ΙΧ)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/59043ce0-0972-4d43-b9c8-c3bef883b32d/"
+    },
+    {
+     "id": "9bc06842-030c-4c23-9133-f92ce69eed6a",
+     "title": "Υπευθυνη Λογιστηριου με γνωση CRM - ERP",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/9bc06842-030c-4c23-9133-f92ce69eed6a/"
+    }
+   ]
+  },
+  {
+   "source": "jobfind",
+   "label": "keyword=events",
+   "url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?keyword=events",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?keyword=events",
+   "bytes": 284978,
+   "seconds": 0.8,
+   "title": "Θέσεις Εργασίας ΑΘΗΝΑ - ΑΤΤΙΚΗ | Jobfind.gr",
+   "block_signs": [],
+   "ids_in_html": 35,
+   "ids_sample": [
+    "07378656-017f-4d4a-a88a-740c8eb1663f",
+    "0d785f11-67bc-4d02-89f5-e0b67156f536",
+    "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+    "1e5a70e0-c616-4cd3-9a59-2dbc7c8ae957",
+    "219c0e55-c287-44e0-8fdb-0373abb8b40b",
+    "24862119-74a5-4675-9c35-cd37e23f709e",
+    "3409a375-8317-46a9-8a63-2081e5d5f12e",
+    "37a4d06e-b264-41e2-a0ad-a0079e9d52ae"
+   ],
+   "anchors_with_title": 35,
+   "samples": [
+    {
+     "id": "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+     "title": "Τεχνικός Βάρδιας Συστημάτων Διοδίων (Ηλεκτρολόγος) | Αφίδνες",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/1b55cfbd-1e1a-4a73-962d-916cc766bb83/"
+    },
+    {
+     "id": "e5d6eeca-e9e1-4d88-b886-96f601619b06",
+     "title": "Courier - Διανομέας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/e5d6eeca-e9e1-4d88-b886-96f601619b06/"
+    },
+    {
+     "id": "7333dbd1-7e8d-41ca-8170-f7949ea5398f",
+     "title": "Πωλητές / Πωλήτριες (Αεροδρόμιο Αθηνών)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/7333dbd1-7e8d-41ca-8170-f7949ea5398f/"
+    },
+    {
+     "id": "45ca4563-c252-499b-b83e-f12ce10c169c",
+     "title": "Πωλητές / Πωλήτριες - Tαμίες | WHSmith Greece",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/45ca4563-c252-499b-b83e-f12ce10c169c/"
+    },
+    {
+     "id": "07378656-017f-4d4a-a88a-740c8eb1663f",
+     "title": "Soho Account Manager",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/07378656-017f-4d4a-a88a-740c8eb1663f/"
+    },
+    {
+     "id": "c03ba406-4721-4860-947b-ce642b745c30",
+     "title": "Οδηγός Γ΄ κατηγορίας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/c03ba406-4721-4860-947b-ce642b745c30/"
+    },
+    {
+     "id": "59043ce0-0972-4d43-b9c8-c3bef883b32d",
+     "title": "Επαγγελματίας Οδηγός διανομής φαρμάκων (Δίπλωμα ΙΧ)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/59043ce0-0972-4d43-b9c8-c3bef883b32d/"
+    },
+    {
+     "id": "9bc06842-030c-4c23-9133-f92ce69eed6a",
+     "title": "Υπευθυνη Λογιστηριου με γνωση CRM - ERP",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/9bc06842-030c-4c23-9133-f92ce69eed6a/"
+    }
+   ]
+  },
+  {
+   "source": "jobfind",
+   "label": "q=events",
+   "url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?q=events",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.jobfind.gr/JobAds/all/Athens/GR/Theseis_Ergasias?q=events",
+   "bytes": 284924,
+   "seconds": 0.9,
+   "title": "Θέσεις Εργασίας ΑΘΗΝΑ - ΑΤΤΙΚΗ | Jobfind.gr",
+   "block_signs": [],
+   "ids_in_html": 35,
+   "ids_sample": [
+    "07378656-017f-4d4a-a88a-740c8eb1663f",
+    "0d785f11-67bc-4d02-89f5-e0b67156f536",
+    "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+    "1e5a70e0-c616-4cd3-9a59-2dbc7c8ae957",
+    "219c0e55-c287-44e0-8fdb-0373abb8b40b",
+    "24862119-74a5-4675-9c35-cd37e23f709e",
+    "3409a375-8317-46a9-8a63-2081e5d5f12e",
+    "37a4d06e-b264-41e2-a0ad-a0079e9d52ae"
+   ],
+   "anchors_with_title": 35,
+   "samples": [
+    {
+     "id": "1b55cfbd-1e1a-4a73-962d-916cc766bb83",
+     "title": "Τεχνικός Βάρδιας Συστημάτων Διοδίων (Ηλεκτρολόγος) | Αφίδνες",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/1b55cfbd-1e1a-4a73-962d-916cc766bb83/"
+    },
+    {
+     "id": "e5d6eeca-e9e1-4d88-b886-96f601619b06",
+     "title": "Courier - Διανομέας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/e5d6eeca-e9e1-4d88-b886-96f601619b06/"
+    },
+    {
+     "id": "7333dbd1-7e8d-41ca-8170-f7949ea5398f",
+     "title": "Πωλητές / Πωλήτριες (Αεροδρόμιο Αθηνών)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/7333dbd1-7e8d-41ca-8170-f7949ea5398f/"
+    },
+    {
+     "id": "45ca4563-c252-499b-b83e-f12ce10c169c",
+     "title": "Πωλητές / Πωλήτριες - Tαμίες | WHSmith Greece",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/45ca4563-c252-499b-b83e-f12ce10c169c/"
+    },
+    {
+     "id": "07378656-017f-4d4a-a88a-740c8eb1663f",
+     "title": "Soho Account Manager",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/07378656-017f-4d4a-a88a-740c8eb1663f/"
+    },
+    {
+     "id": "c03ba406-4721-4860-947b-ce642b745c30",
+     "title": "Οδηγός Γ΄ κατηγορίας",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/c03ba406-4721-4860-947b-ce642b745c30/"
+    },
+    {
+     "id": "59043ce0-0972-4d43-b9c8-c3bef883b32d",
+     "title": "Επαγγελματίας Οδηγός διανομής φαρμάκων (Δίπλωμα ΙΧ)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/59043ce0-0972-4d43-b9c8-c3bef883b32d/"
+    },
+    {
+     "id": "9bc06842-030c-4c23-9133-f92ce69eed6a",
+     "title": "Υπευθυνη Λογιστηριου με γνωση CRM - ERP",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/9bc06842-030c-4c23-9133-f92ce69eed6a/"
+    }
+   ]
+  },
+  {
+   "source": "jobfind",
+   "label": "/JobAds/Search?keywords=events",
+   "url": "https://www.jobfind.gr/JobAds/Search?keywords=events",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.jobfind.gr/JobAds/Search?keywords=events",
+   "bytes": 407523,
+   "seconds": 1.4,
+   "title": "Νέες Θέσεις Εργασίας | Jobfind.gr",
+   "block_signs": [],
+   "ids_in_html": 35,
+   "ids_sample": [
+    "0247d91c-50cd-476b-922f-943563a4fa06",
+    "07fddb28-efa1-4fe2-832f-542591ad57f1",
+    "1131a16e-0a31-4e5d-be1e-0f09b7f13bc7",
+    "1e5a70e0-c616-4cd3-9a59-2dbc7c8ae957",
+    "24862119-74a5-4675-9c35-cd37e23f709e",
+    "30887598-6016-40f7-a261-e3bef217e3aa",
+    "3328ceb8-1898-4ee6-b05c-d2e8bb6a4c4f",
+    "400a7e4b-4cc9-4bc7-bcfd-e2178aac4608"
+   ],
+   "anchors_with_title": 35,
+   "samples": [
+    {
+     "id": "e5036ef6-821a-42f3-aa8b-c6dd2a21c0cc",
+     "title": "Νοσηλευτές / Διασώστες - Πλήρωμα Ασθενοφόρου",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/e5036ef6-821a-42f3-aa8b-c6dd2a21c0cc/"
+    },
+    {
+     "id": "989a24bb-0891-46b4-90b4-83a70c12c6fb",
+     "title": "Λογιστής Α' Τάξης (Senior – με Προοπτική Εξέλιξης)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/989a24bb-0891-46b4-90b4-83a70c12c6fb/"
+    },
+    {
+     "id": "b95a16bc-391a-422c-a69c-798db671eee1",
+     "title": "Eshop Woocomerce",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/b95a16bc-391a-422c-a69c-798db671eee1/"
+    },
+    {
+     "id": "59043ce0-0972-4d43-b9c8-c3bef883b32d",
+     "title": "Επαγγελματίας Οδηγός διανομής φαρμάκων (Δίπλωμα ΙΧ)",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/59043ce0-0972-4d43-b9c8-c3bef883b32d/"
+    },
+    {
+     "id": "30887598-6016-40f7-a261-e3bef217e3aa",
+     "title": "Υπάλληλος σε αρτοζαχαροπλαστείο",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/30887598-6016-40f7-a261-e3bef217e3aa/"
+    },
+    {
+     "id": "9bc06842-030c-4c23-9133-f92ce69eed6a",
+     "title": "Υπευθυνη Λογιστηριου με γνωση CRM - ERP",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/9bc06842-030c-4c23-9133-f92ce69eed6a/"
+    },
+    {
+     "id": "d1f1b7e5-a983-4240-9fe7-2cc686e0d725",
+     "title": "ΓΡΑΜΜΑΤΕΙΑΚΗ ΥΠΟΣΤΗΡΙΞΗ",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/d1f1b7e5-a983-4240-9fe7-2cc686e0d725/"
+    },
+    {
+     "id": "720d18a1-268f-4ba5-97cf-b8b97b540064",
+     "title": "Πωλητές / Πωλήτριες",
+     "url": "https://www.jobfind.gr/JobAd/View/GR/Theseis_Ergasias/720d18a1-268f-4ba5-97cf-b8b97b540064/"
+    }
+   ]
+  },
+  {
+   "source": "skywalker",
+   "label": "σελίδα αγγελιών (σελίδα + scripts/API)",
+   "url": "https://www.skywalker.gr/el/aggelies-ergasias",
+   "kind": "discover",
+   "robots": "robots.txt HTTP 403 (θεωρείται απαγόρευση)",
+   "robots_allows": false,
+   "status": "ΔΕΝ ΑΝΟΙΧΤΗΚΕ — απαγορεύεται από robots.txt"
+  },
+  {
+   "source": "skywalker",
+   "label": "keywords=events",
+   "url": "https://www.skywalker.gr/el/aggelies-ergasias?keywords=events",
+   "kind": "list",
+   "robots": "robots.txt HTTP 403 (θεωρείται απαγόρευση)",
+   "robots_allows": false,
+   "status": "ΔΕΝ ΑΝΟΙΧΤΗΚΕ — απαγορεύεται από robots.txt"
+  },
+  {
+   "source": "workable",
+   "label": "αναζήτηση communications Αθήνα",
+   "url": "https://jobs.workable.com/search?location=Athens&query=communications",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": false,
+   "status": "ΔΕΝ ΑΝΟΙΧΤΗΚΕ — απαγορεύεται από robots.txt"
+  },
+  {
+   "source": "workable",
+   "label": "API communications Αθήνα",
+   "url": "https://jobs.workable.com/api/v1/jobs?query=communications&location=Athens",
+   "kind": "api",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://jobs.workable.com/api/v1/jobs?query=communications&location=Athens",
+   "bytes": 177430,
+   "seconds": 0.4,
+   "title": "",
+   "block_signs": [],
+   "ids_in_html": 37,
+   "ids_sample": [
+    "0423834b-2946-400e-bbfd-0324c7736505",
+    "0a7621bc-0aa5-4891-b54e-1b6b2fae9536",
+    "0a8fb949-698f-49ba-86fe-dabae5f20841",
+    "172853ba-cc4b-4ad5-a51d-fe0da81b9de8",
+    "17f526f9-f329-4717-88d9-a81692008da1",
+    "1e30c8e8-c984-4c17-b433-95ae8b92f890",
+    "21ff52e6-5233-4089-954e-f04838d12d4e",
+    "2da18b71-b7e2-4995-9a6b-3d6b7ad72ab0"
+   ],
+   "anchors_with_title": 0,
+   "samples": [],
+   "content_type": "application/json; charset=utf-8",
+   "body_head": "{\"title\":\"Workable\",\"totalSize\":94,\"nextPageToken\":\"eyJzZWFyY2hBdCI6IjIwMjYtMTAtMTdUMjE6NTk6NTkuOTk5WiIsIm9mZnNldCI6WzcuOTcwMDM1LDAsMTc4NjAyOTg4ODQyNSwiODNlY2FlOTktNTcxNC00NTI3LTk4OTItNzQ5NWZkN2VkNmIyIl19\",\"jobs\":[{\"id\":\"0a8fb949-698f-49ba-86fe-dabae5f20841\",\"title\":\"Event Representative για MKO - Ευκαιρία Καριέρας σε Μάρκετινγκ & Επικοινωνία\",\"state\":\"published\",\"description\":\"<p>Εταιρία marketin"
+  },
+  {
+   "source": "careerjet",
+   "label": "events Αθήνα",
+   "url": "https://www.careerjet.gr/jobs?s=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 404,
+   "final_url": "https://www.careerjet.gr/jobs?s=events&l=%CE%91%CE%B8%CE%AE%CE%BD%CE%B1",
+   "bytes": 43105,
+   "seconds": 0.3,
+   "title": "Η Σελίδα δεν βρέθηκε | Careerjet",
+   "block_signs": [],
+   "ids_in_html": 5,
+   "ids_sample": [
+    "gr4f5f64aa1cf1f7ea993be4299c2044da",
+    "gr68d899c7839628f731e8f53d0d704204",
+    "gr917e76086d95ab0194c8cc2a916034e8",
+    "gra0f4248ce4f997aa31a9b7f0889d330a",
+    "grb5a68f4926eb0381d5db8b33bd148541"
+   ],
+   "anchors_with_title": 5,
+   "samples": [
+    {
+     "id": "grb5a68f4926eb0381d5db8b33bd148541",
+     "title": "Receiver",
+     "url": "https://www.careerjet.gr/jobad/grb5a68f4926eb0381d5db8b33bd148541"
+    },
+    {
+     "id": "gr917e76086d95ab0194c8cc2a916034e8",
+     "title": "Senior Business Controller – Finance department",
+     "url": "https://www.careerjet.gr/jobad/gr917e76086d95ab0194c8cc2a916034e8"
+    },
+    {
+     "id": "gr68d899c7839628f731e8f53d0d704204",
+     "title": "Talent Acquisition Associate",
+     "url": "https://www.careerjet.gr/jobad/gr68d899c7839628f731e8f53d0d704204"
+    },
+    {
+     "id": "gr4f5f64aa1cf1f7ea993be4299c2044da",
+     "title": "Υποδιευθυντής-τρια Καταστήματος στο Ηράκλειο - Κορώνη",
+     "url": "https://www.careerjet.gr/jobad/gr4f5f64aa1cf1f7ea993be4299c2044da"
+    },
+    {
+     "id": "gra0f4248ce4f997aa31a9b7f0889d330a",
+     "title": "Μηχανολόγος Μηχανικός για κατασκευαστική εταιρεία",
+     "url": "https://www.careerjet.gr/jobad/gra0f4248ce4f997aa31a9b7f0889d330a"
+    }
+   ]
+  },
+  {
+   "source": "onassis",
+   "label": "smartcv",
+   "url": "https://apply.smartcv.co/onassis-group/",
+   "kind": "list",
+   "robots": "robots.txt HTTP 404 (θεωρείται ελεύθερο)",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://apply.smartcv.co/onassis-group/",
+   "bytes": 13214,
+   "seconds": 0.2,
+   "title": "Current openings - Onassis Group",
+   "block_signs": [],
+   "ids_in_html": 6,
+   "ids_sample": [
+    "2y1xw",
+    "87wwz",
+    "j59z",
+    "l4ddq",
+    "ppml",
+    "rpvvn"
+   ],
+   "anchors_with_title": 6,
+   "samples": [
+    {
+     "id": "ppml",
+     "title": "Submit your CV for future openings",
+     "url": "https://apply.smartcv.co/onassis-group/job/ppml"
+    },
+    {
+     "id": "2y1xw",
+     "title": "Financial Associate (F&B & Retail Operations)",
+     "url": "https://apply.smartcv.co/onassis-group/job/2y1xw"
+    },
+    {
+     "id": "l4ddq",
+     "title": "Store Operations Assistant (Part-time)",
+     "url": "https://apply.smartcv.co/onassis-group/job/l4ddq"
+    },
+    {
+     "id": "rpvvn",
+     "title": "Sales Advisors (Part-Time)",
+     "url": "https://apply.smartcv.co/onassis-group/job/rpvvn"
+    },
+    {
+     "id": "87wwz",
+     "title": "Senior Sales Advisor",
+     "url": "https://apply.smartcv.co/onassis-group/job/87wwz"
+    },
+    {
+     "id": "j59z",
+     "title": "Safety & Security Professional",
+     "url": "https://apply.smartcv.co/onassis-group/job/j59z"
+    }
+   ]
+  },
+  {
+   "source": "snf",
+   "label": "job openings",
+   "url": "https://www.snf.org/en/about/career-opportunities/job-openings/",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.snf.org/en/about/career-opportunities/job-openings/",
+   "bytes": 37516,
+   "seconds": 0.3,
+   "title": "Job Openings - Stavros Niarchos Foundation",
+   "block_signs": [],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  },
+  {
+   "source": "alfavita",
+   "label": "εργασία",
+   "url": "https://www.alfavita.gr/ergasia",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.alfavita.gr/ergasia",
+   "bytes": 60168,
+   "seconds": 0.4,
+   "title": "Εργασία | Alfavita",
+   "block_signs": [],
+   "ids_in_html": 30,
+   "ids_sample": [
+    "563535",
+    "564112",
+    "564135",
+    "564169",
+    "564195",
+    "564203",
+    "564227",
+    "564234"
+   ],
+   "anchors_with_title": 30,
+   "samples": [
+    {
+     "id": "564580",
+     "title": "17.10.2026 - 06:50 Γονικές άδειες: Νέες ρυθμίσεις για μεγαλύτερη ευελιξία Καταργείται η υποχρεωτική αναμονή εν",
+     "url": "https://www.alfavita.gr/ergasia/564580_gonikes-adeies-nees-rythmiseis-gia-megalyteri-eyelixia"
+    },
+    {
+     "id": "564618",
+     "title": "16.10.2026 - 14:55 ΑΣΕΠ: Αποτελέσματα για τις θέσεις Γενικών Διευθυντών στο Υπουργείο Παιδείας Οριστικά αποτελ",
+     "url": "https://www.alfavita.gr/ergasia/564618_asep-apotelesmata-gia-tis-theseis-genikon-dieythynton-sto-ypoyrgeio-paideias"
+    },
+    {
+     "id": "564605",
+     "title": "16.10.2026 - 14:12 Κεραμέως στο alfavita: Ανοίγουν 1.000 θέσεις τηλεργασίας μέσω ΔΥΠΑ με 90% επιδότηση μισθού ",
+     "url": "https://www.alfavita.gr/ergasia/564605_kerameos-sto-alfavita-anoigoyn-1000-theseis-tilergasias-meso-dypa-me-90-epidotisi"
+    },
+    {
+     "id": "564585",
+     "title": "16.10.2026 - 12:31 Ειδική Συλλογική Σύμβαση Εργασίας: 32ωρο και έξτρα άδειες στους δήμους (ΦΕΚ) 32 ώρες την εβ",
+     "url": "https://www.alfavita.gr/ergasia/564585_eidiki-syllogiki-symbasi-ergasias-32oro-kai-extra-adeies-stoys-dimoys-fek"
+    },
+    {
+     "id": "564581",
+     "title": "16.10.2026 - 12:05 ΑΣΕΠ 12Κ/2021: Μόνιμες προσλήψεις χωρίς προκήρυξη στο Κτηματολόγιο Νέα πρόσκληση του ΑΣΕΠ γ",
+     "url": "https://www.alfavita.gr/ergasia/564581_asep-12k/2021-monimes-proslipseis-horis-prokiryxi-sto-ktimatologio"
+    },
+    {
+     "id": "564568",
+     "title": "16.10.2026 - 11:01 Θέση πτυχιούχου στα κεντρικά γραφεία του Σκλαβενίτη Πώς θα στείλετε το βιογραφικό σας",
+     "url": "https://www.alfavita.gr/ergasia/564568_thesi-ptyhioyhoy-sta-kentrika-grafeia-toy-sklabeniti"
+    },
+    {
+     "id": "564566",
+     "title": "16.10.2026 - 10:52 Προσλήψεις 2027: Ανοίγουν 3.845 νέες θέσεις σε Δήμους και ΟΤΑ Στις 3.845 οι θέσεις που δίνε",
+     "url": "https://www.alfavita.gr/ergasia/564566_proslipseis-2027-anoigoyn-3845-nees-theseis-se-dimoys-kai-ota"
+    },
+    {
+     "id": "564542",
+     "title": "16.10.2026 - 09:05 ΕΣΔι - 265 γραμματείς στα Δικαστήρια: Διευκρινίσεις για την ύλη Διευκρινίσεις για την ύλη σ",
+     "url": "https://www.alfavita.gr/ergasia/564542_esdi-265-grammateis-sta-dikastiria-dieykriniseis-gia-tin-yli"
+    }
+   ]
+  },
+  {
+   "source": "proson",
+   "label": "προκηρύξεις",
+   "url": "https://www.proson.gr/ergasia/prokiryxeis",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 200,
+   "final_url": "https://www.proson.gr/ergasia/prokiryxeis",
+   "bytes": 69910,
+   "seconds": 0.5,
+   "title": "Προκηρύξεις | Proson",
+   "block_signs": [],
+   "ids_in_html": 22,
+   "ids_sample": [
+    "93262",
+    "93294",
+    "93324",
+    "93325",
+    "93337",
+    "93350",
+    "93364",
+    "93368"
+   ],
+   "anchors_with_title": 22,
+   "samples": [
+    {
+     "id": "93555",
+     "title": "17 Οκτ 2026 13:13 Εθνικό Αρχαιολογικό Μουσείο: «Τρέχουν» οι αιτήσεις για 60 προσλήψεις Σε εξέλιξη βρίσκονται ο",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93555_ethniko-arhaiologiko-moyseio-trehoyn-oi-aitiseis-gia-60-proslipseis"
+    },
+    {
+     "id": "93422",
+     "title": "17 Οκτ 2026 04:30 ΑΣΕΠ: Αντίστροφη μέτρηση για 149 προσλήψεις στον ΟΔΑΠ Λήγει σε λίγα 24ωρα η προθεσμία των αι",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93422_asep-antistrofi-metrisi-gia-149-proslipseis-ston-odap"
+    },
+    {
+     "id": "93540",
+     "title": "16 Οκτ 2026 16:08 Δήμος Ιλίου: Αιτήσεις «τώρα» για 22 προσλήψεις γυμναστών - Μέχρι πότε οι αιτήσεις Πού κάνετε",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93540_dimos-ilioy-aitiseis-tora-gia-22-proslipseis-gymnaston-mehri-pote-oi"
+    },
+    {
+     "id": "93498",
+     "title": "16 Οκτ 2026 11:11 Αττική: Από σήμερα οι αιτήσεις για 25 προσλήψεις στον Δήμο Καλλιθέας Πού κάνετε αίτηση",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93498_attiki-apo-simera-oi-aitiseis-gia-25-proslipseis-ston-dimo-kallitheas"
+    },
+    {
+     "id": "93432",
+     "title": "16 Οκτ 2026 05:30 Γραπτός ΑΣΕΠ: 35 μόνιμοι στην Ελληνική Διπλωματική Ακαδημία - Πότε λήγουν οι αιτήσεις Πού κά",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93432_graptos-asep-35-monimoi-stin-elliniki-diplomatiki-akadimia-pote-ligoyn-oi"
+    },
+    {
+     "id": "93470",
+     "title": "15 Οκτ 2026 17:38 Παιδικοί σταθμοί: 10 προσλήψεις στον Δήμο Λευκάδας - Πότε ξεκινούν οι αιτήσεις Πού κάνετε αί",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93470_paidikoi-stathmoi-10-proslipseis-ston-dimo-leykadas-pote-xekinoyn-oi"
+    },
+    {
+     "id": "93465",
+     "title": "15 Οκτ 2026 15:59 Δήμος Σαρωνικού: Νέες θέσεις εργασίας με αμοιβή έως 10.512 ευρώ Οι ζητούμενες ειδικότητες",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93465_dimos-saronikoy-nees-theseis-ergasias-me-amoibi-eos-10512-eyro"
+    },
+    {
+     "id": "93452",
+     "title": "15 Οκτ 2026 13:54 Άνοιξαν 77 θέσεις εργασίας στον Δήμο Χαλκιδέων Αναλυτικά οι ειδικότητες και η προθεσμία υποβ",
+     "url": "https://www.proson.gr/ergasia/prokiryxeis/93452_anoixan-77-theseis-ergasias-ston-dimo-halkideon"
+    }
+   ]
+  },
+  {
+   "source": "linkedin",
+   "label": "guest αναζήτηση (μόνο αν επιτρέπεται)",
+   "url": "https://www.linkedin.com/jobs/search?keywords=communications&location=Athens",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": false,
+   "status": "ΔΕΝ ΑΝΟΙΧΤΗΚΕ — απαγορεύεται από robots.txt"
+  },
+  {
+   "source": "xe",
+   "label": "αγγελίες εργασίας (μόνο αν επιτρέπεται)",
+   "url": "https://www.xe.gr/ergasia/",
+   "kind": "list",
+   "robots": "robots.txt OK",
+   "robots_allows": true,
+   "http": 404,
+   "final_url": "https://www.xe.gr/ergasia/",
+   "bytes": 31493,
+   "seconds": 0.3,
+   "title": "Oops! - κάπου έγινε κάποιο λάθος...",
+   "block_signs": [],
+   "ids_in_html": 0,
+   "ids_sample": [],
+   "anchors_with_title": 0,
+   "samples": []
+  }
+ ]
+}
